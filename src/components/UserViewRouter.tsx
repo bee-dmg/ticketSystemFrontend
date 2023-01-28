@@ -19,6 +19,8 @@ return(<div>You're all done, no current tickets!</div>)
         </div>)
     case "add":
         return(<AddTicket newTicket={props.newTicket}/>)
+    case "complete":
+        return(<div>Ticket Added!</div>)
 }
 return(
     <></>

@@ -10,6 +10,7 @@ function Main(props:any) {
 
     function newTicket(ticket:any){
         tickets.push(ticket);
+        setView("complete");
       console.log(tickets);
     }
   return (
