@@ -1,19 +1,22 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import TicketsContext from '../context/ticketsContext';
 
 function UserView(props:{view:string,setView:Function, tickets:any, newTicket:Function}) { 
     const view = props.view;
   
-   const tickets = props.tickets;
-   console.log(tickets.length);
+   const tickets = useContext(TicketsContext);
+   console.log(tickets);
+   console.log(Object.values(tickets).length);
+   const ticketsLength = Object.values(tickets).length;
 switch(view){
     case "current":
-        if(tickets.length===0){
+        if(ticketsLength===0){
 return(<div>pizza</div>)
         }
         
         return(<div>current ticket view
-            <div>{tickets.map((ticket:any)=><div><div>Heading:{ticket.heading}</div><div>Status:{ticket.status}</div><div>Date: {ticket.date}</div></div>)}</div>
+            <div>{Object.values(tickets).map((ticket:any)=><div><div>Heading:{ticket.heading}</div><div>Status:{ticket.status}</div><div>Date: {ticket.date}</div></div>)}</div>
         </div>)
     case "add":
         return(<div onClick={()=>{props.newTicket({heading:"test",status:"test",date:"test"}); console.log(tickets)}}>Add a ticket view</div>)
