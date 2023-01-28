@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import NavBar from './NavBar';
-import UserView from './UserView';
+import UserView from './UserViewRouter';
 function Main(props:any) { 
     
     const [view,setView]=useState("current");

@@ -1,13 +1,14 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 
 
 function NavBar(props:{view:string,setView:Function}) {
    console.log(props);
   return (
     <div className="App">
-        <div onClick={()=>{props.setView("add"); console.log(props.view);}}>Add a Ticket</div>
+        <Button onClick={()=>{props.setView("add"); console.log(props.view);}}>Add a Ticket</Button>
 
-     <div onClick={()=>{props.setView("current")}}>Current Tickets:</div>
+     <Button onClick={()=>{props.setView("current")}}>Ticket Queue</Button>
     
     </div>
   );
