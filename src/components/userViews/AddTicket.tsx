@@ -2,12 +2,14 @@ import React from 'react';
 import { useState } from 'react';
 import { Button, Form, InputGroup } from 'react-bootstrap';
 import { useDispatch } from "react-redux"
+import uuid from 'react-uuid';
 
-function AddTicket(props:{newTicket:Function}){
+function AddTicket(props:{newTicket:Function, tickets:any}){
        const [title, setTitle] = useState();
        const [description, setDescription] = useState();
        const [reporter, setReporter] = useState();
-//      
+        const ukey:string = uuid();
+        const ticketNumber =props.tickets.length;
         return(
         <div>
         
@@ -19,7 +21,7 @@ function AddTicket(props:{newTicket:Function}){
         <Form.Control type="text" placeholder="Enter reporter" value={reporter} onChange={(e:any)=>{setReporter(e.target.value); console.log(description);}} />
        
       </Form.Group>
-        <Button onClick={()=>{props.newTicket({title:title,status:"open",date: new Date(), description: description, reporter:reporter})}}>Submit</Button>
+        <Button onClick={()=>{props.newTicket({ticketNumber:ticketNumber,key:ukey,title:title,status:"open",date: new Date(), description: description, reporter:reporter})}}>Submit</Button>
         {/* <Button onClick={()=>{dispatch({type:"add_ticket", payload:{title:title,status:"open",date: new Date(), description: description, reporter:reporter}})}}>Submit</Button> */}
         
         </Form>

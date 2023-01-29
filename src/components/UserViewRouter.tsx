@@ -18,7 +18,7 @@ return(<div>You're all done, no current tickets!</div>)
             <div><TicketQueueView tickets={tickets} /></div>
         </div>)
     case "add":
-        return(<AddTicket newTicket={props.newTicket}/>)
+        return(<AddTicket newTicket={props.newTicket} tickets={tickets}/>)
     case "complete":
         return(<div>Ticket Added!</div>)
 }
