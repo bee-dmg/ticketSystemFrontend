@@ -4,6 +4,7 @@ import { Button, Form, InputGroup } from 'react-bootstrap';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import TicketType from '../../interfaces/TicketInterface';
+import StatusSelector from './StatusSelector';
 
 function EditTicket(props:{editTicket:Function, tickets:Array<TicketType>}){
 
@@ -32,13 +33,8 @@ let ticket = tickets[parseInt(ticketId.ticketId)];
         <Form.Label>Ticket Title</Form.Label>
         <Form.Control type="text" placeholder="Enter title" value={title} onChange={(e:any)=>{setTitle(e.target.value); console.log(title);}} />
         <Form.Control as="textarea"  rows={3} placeholder="Enter description" value={description} onChange={(e:any)=>{setDescription(e.target.value); console.log(description);}} />
-        <Form.Select aria-label="Default select example" value={updateStatus} onChange={(e:any)=>{setUpdateStatus(e.target.value)}}>
-      
-      <option value={Status.OPEN}>Open</option>
-      <option value={Status.READY}>Ready</option>
-      <option value={Status.IN_PROGRESS}>In Progress</option>
-      <option value={Status.CLOSED}>Closed</option>
-    </Form.Select>
+       
+    <StatusSelector status={updateStatus} setStatus={setUpdateStatus} />
       </Form.Group>
         <Link to={`/view/${ticket.ticketNumber}`}><Button onClick={()=>{props.editTicket({ticketNumber:ticket.ticketNumber,title:title,status:updateStatus,date: new Date(), reporter:ticket.reporter,description: description})}}>Submit</Button>
         </Link>
