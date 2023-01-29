@@ -23,7 +23,7 @@ return(
     </div>)}</>
 )}
 else{
-    return(<div> Hello</div>)
+    return(<div>Error, please try again.</div>)
 }
 }
 
