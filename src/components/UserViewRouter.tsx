@@ -7,8 +7,9 @@ import {
     BrowserRouter as Router,
     Routes,
     Route,
-    Link
+    Link, useParams
   } from "react-router-dom";
+import SingleTicket from './userViews/SingleTicket';
   
   
 
@@ -40,7 +41,7 @@ export default function UserViewRouter(props:{tickets:any, newTicket:Function}) 
        
           <Route path="/" element={<TicketQueueView tickets={tickets} />} />
           
-          
+          <Route path="/edit/:ticketId" element={<SingleTicket tickets={tickets}/>}/>
           </Routes>
        
       </div>

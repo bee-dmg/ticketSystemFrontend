@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { Button, Form, InputGroup } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { useDispatch } from "react-redux"
 import uuid from 'react-uuid';
 
@@ -21,8 +22,8 @@ function AddTicket(props:{newTicket:Function, tickets:any}){
         <Form.Control type="text" placeholder="Enter reporter" value={reporter} onChange={(e:any)=>{setReporter(e.target.value); console.log(description);}} />
        
       </Form.Group>
-        <Button onClick={()=>{props.newTicket({ticketNumber:ticketNumber,key:ukey,title:title,status:"open",date: new Date(), description: description, reporter:reporter})}}>Submit</Button>
-        {/* <Button onClick={()=>{dispatch({type:"add_ticket", payload:{title:title,status:"open",date: new Date(), description: description, reporter:reporter}})}}>Submit</Button> */}
+       <Link to="/"> <Button onClick={()=>{props.newTicket({ticketNumber:ticketNumber,key:ukey,title:title,status:"open",date: new Date(), description: description, reporter:reporter})}}>Submit</Button>
+       </Link>  {/* <Button onClick={()=>{dispatch({type:"add_ticket", payload:{title:title,status:"open",date: new Date(), description: description, reporter:reporter}})}}>Submit</Button> */}
         
         </Form>
         

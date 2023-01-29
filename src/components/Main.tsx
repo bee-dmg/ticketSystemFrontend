@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import NavBar from './NavBar';
 import UserViewRouter from './UserViewRouter';
+import { redirect } from "react-router-dom";
 function Main(props:any) { 
     
   const tickets = props.tickets;
@@ -9,7 +10,6 @@ function Main(props:any) {
 
     function newTicket(ticket:any){
         tickets.push(ticket);
-      console.log(tickets);
     }
   return (
     <div className="App">
