@@ -1,9 +1,17 @@
 import React from 'react';
 import { useState } from 'react';
 import { Button, Form, InputGroup } from 'react-bootstrap';
+import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
+import TicketType from '../../interfaces/TicketInterface';
 
-function EditTicket(props:{editTicket:Function, ticket:any}){
-    const ticket = props.ticket;
+function EditTicket(props:{editTicket:Function, tickets:Array<TicketType>}){
+
+    let ticketId:any= useParams();
+
+  const tickets = props.tickets;
+let ticket = tickets[parseInt(ticketId.ticketId)];
+   
        const [title, setTitle] = useState(ticket.title);
        const [description, setDescription] = useState(ticket.description);
 
@@ -14,11 +22,11 @@ function EditTicket(props:{editTicket:Function, ticket:any}){
       <Form.Group className="mb-3" controlId="formTicket">
         <Form.Label>Ticket Title</Form.Label>
         <Form.Control type="text" placeholder="Enter title" value={title} onChange={(e:any)=>{setTitle(e.target.value); console.log(title);}} />
-        <Form.Control type="text" placeholder="Enter description" value={description} onChange={(e:any)=>{setDescription(e.target.value); console.log(description);}} />
+        <Form.Control as="textarea"  rows={3} placeholder="Enter description" value={description} onChange={(e:any)=>{setDescription(e.target.value); console.log(description);}} />
         <Form.Control type="select" placeholder="status"></Form.Control>
       </Form.Group>
-        <Button onClick={()=>{props.editTicket({title:title,status:"open",date: new Date(), description: description})}}>Submit</Button>
-    
+        <Link to={`/view/${ticket.ticketNumber}`}><Button onClick={()=>{props.editTicket({ticketNumber:ticket.ticketNumber,title:title,status:"open",date: new Date(), reporter:ticket.reporter,description: description})}}>Submit</Button>
+        </Link>
         </Form>
         
         
