@@ -4,7 +4,7 @@ import './App.css';
 import Main from './components/Main';
 
 function App() {
-  const tickets:Array<any>=[];
+  const tickets:Array<{title:string,status:string, description:string, date:Date}>=[{title:'Lemon',status:"closed", description:"pizza", date: new Date()}];
   return (
     <div className="App">
      <Main tickets={tickets} />

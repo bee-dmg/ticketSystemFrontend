@@ -3,28 +3,47 @@ import { useState } from 'react';
 import AddTicket from './userViews/AddTicket';
 import TicketQueueView from './userViews/TicketQueueView';
 
-function UserView(props:{view:string,setView:Function, tickets:any, newTicket:Function}) { 
-    const view = props.view;
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Link
+  } from "react-router-dom";
   
-   const tickets = props.tickets;
-   console.log(tickets.length);
-switch(view){
-    case "current":
-        if(tickets.length===0){
-return(<div>You're all done, no current tickets!</div>)
-        }
-        
-        return(<div>current ticket view
-            <div><TicketQueueView tickets={tickets} /></div>
-        </div>)
-    case "add":
-        return(<AddTicket newTicket={props.newTicket} tickets={tickets}/>)
-    case "complete":
-        return(<div>Ticket Added!</div>)
-}
-return(
-    <></>
-)
-}
+  
 
-export default UserView;
+
+
+
+
+export default function UserViewRouter(props:{tickets:any, newTicket:Function}) {
+    const tickets=props.tickets;
+  return (
+    
+      <div>
+    {/* //     <nav>
+    //       <ul>
+    //         <li>
+    //           <Link to="/">Home</Link>
+    //         </li>
+    //         <li>
+    //           <Link to="/about">About</Link>
+    //         </li>
+    //         <li>
+    //           <Link to="/users">Users</Link>
+    //         </li>
+    //       </ul>
+    //     </nav> */}
+
+   <Routes>
+          <Route path="/add" element={  <AddTicket newTicket={props.newTicket} tickets={tickets}/>} />
+       
+          <Route path="/" element={<TicketQueueView tickets={tickets} />} />
+          
+          
+          </Routes>
+       
+      </div>
+    
+  );
+}
