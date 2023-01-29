@@ -1,11 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
 import { Button, Form, InputGroup } from 'react-bootstrap';
+import { useDispatch } from "react-redux"
 
 function AddTicket(props:{newTicket:Function}){
        const [title, setTitle] = useState();
        const [description, setDescription] = useState();
        const [reporter, setReporter] = useState();
+//      
         return(
         <div>
         
@@ -18,6 +20,7 @@ function AddTicket(props:{newTicket:Function}){
        
       </Form.Group>
         <Button onClick={()=>{props.newTicket({title:title,status:"open",date: new Date(), description: description, reporter:reporter})}}>Submit</Button>
+        {/* <Button onClick={()=>{dispatch({type:"add_ticket", payload:{title:title,status:"open",date: new Date(), description: description, reporter:reporter}})}}>Submit</Button> */}
         
         </Form>
         
