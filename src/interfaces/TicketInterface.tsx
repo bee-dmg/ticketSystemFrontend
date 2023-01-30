@@ -1,3 +1,5 @@
+import Status from "./StatusEnum"
+
 interface TicketType{
 ticketNumber:number,
 key:string,
@@ -8,13 +10,6 @@ reporter:string,
 email:string,
 status: Status
 }
- enum Status{
-    OPEN="OPEN",
-    READY="READY",
-    IN_PROGRESS="IN_PROGRESS",
-    CLOSED="CLOSED",
-   
-
- }
+ 
  
 export default TicketType;

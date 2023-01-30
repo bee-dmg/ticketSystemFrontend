@@ -13,9 +13,9 @@ function NavBar() {
   return (
     <div className="App">
            <Link to="/add">
-        <Button >Add a Ticket</Button></Link>
+        Add a Ticket</Link> <span> / </span>
         <Link to="/">
-     <Button >Ticket Queue</Button>
+    Ticket Queue
     </Link>
     </div>
   );
