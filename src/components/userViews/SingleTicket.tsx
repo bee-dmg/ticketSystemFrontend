@@ -13,7 +13,7 @@ function SingleTicket(props: { tickets: Array<TicketType>, updateStatus: Functio
     const [status, setStatus] = useState(ticket.status);
 
     return (
-        <><div><Link to={`/edit/${ticket.ticketNumber}`}>Edit Ticket</Link></div><div className="row"><div className="col-3">{ticket.ticketNumber}</div><div className="col-3">Title:{ticket.title}</div><div onMouseOut={() => { props.updateStatus(ticket, status); console.log("pizza") }}><StatusSelector status={status} setStatus={setStatus} /></div><div className="col-3">Status:{status}</div><div className="col-3">Reporter:{ticket.reporter}</div><div className="col-3">Date:{ticket.date.toDateString()} {ticket.date.getHours()}:{ticket.date.getMinutes()}:{ticket.date.getSeconds()}</div><div>Description:{ticket.description}</div>
+        <><div key={ticket.key}><Link to={`/edit/${ticket.ticketNumber}`}>Edit Ticket</Link></div><div className="row"><div className="col-3">{ticket.ticketNumber}</div><div className="col-3">Title:{ticket.title}</div><div onMouseOut={() => { props.updateStatus(ticket, status); console.log("pizza") }}><StatusSelector status={status} setStatus={setStatus} /></div><div className="col-3">Status:{status}</div><div className="col-3">Reporter:{ticket.reporter}</div><div className="col-3">Date:{ticket.date.toDateString()} {ticket.date.getHours()}:{ticket.date.getMinutes()}:{ticket.date.getSeconds()}</div><div>Description:{ticket.description}</div>
 
         </div></>
     )
