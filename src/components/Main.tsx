@@ -22,7 +22,7 @@ function Main() {
   }
 
   function newTicket(ticket: TicketType) {
-    apiCall(setTickets, "", "POST", ticket);
+    apiCall(setTickets, "/", "POST", ticket);
   }
   function editTicket(ticket: TicketType) {
     apiCall(setTickets, ticket.ticketNumber.toString(), "PUT", ticket);
