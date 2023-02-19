@@ -2,14 +2,14 @@ import React from 'react';
 import Status from '../../interfaces/StatusEnum';
 import "../../styles/styles.css";
 import {  Form } from 'react-bootstrap';
-function StatusSelector(props: { status: any, setStatus: any }) {
+function StatusSelector(props: { status: any, setStatus: any, updateStatus:Function }) {
  
-    const updateStatus = props.status;
-    const setUpdateStatus = props.setStatus;
+    const status = props.status;
+    const setStatus = props.setStatus;
 
     return (
         <><div>
-            <Form.Select aria-label="Default select example" className="statusInput" value={updateStatus} onChange={(e: any) => { setUpdateStatus(e.target.value) }}>
+            <Form.Select aria-label="Default select example" className="statusInput" value={status} onChange={(e: any) => {setStatus(e.target.value);  }}>
 
                 <option value={Status.OPEN}>Open</option>
                 <option value={Status.READY}>Ready</option>

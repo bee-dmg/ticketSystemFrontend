@@ -18,7 +18,7 @@ function Main() {
     .then((response) => response.json())
     .then((data) => {setTickets(data); 
     }).catch((error) => {
-      console.error('Error:', error);
+      
       setTickets([])
     });
     }, 10000);
@@ -45,21 +45,29 @@ function Main() {
     .then((data) => {setTickets(data);} )
   }
 
+  function deleteTicket(ticket:TicketType){
+callAPI('http://localhost:8080/api/tickets/'+ticket.id, 'DELETE',ticket)
+  }
+
   function newTicket(ticket: TicketType) {
     callAPI('http://localhost:8080/api/tickets','POST',ticket);
   }
   function editTicket(ticket: TicketType) {
     callAPI('http://localhost:8080/api/tickets/'+ticket.ticketNumber,'PUT', ticket)
   }
+
+  
   function updateStatus(ticket: TicketType, status: Status) {
-    // tickets[ticket.key] = { ...ticket, status: status };
+    const ticket2 = { ...ticket, status: status };
     //non functioning needs work with backend
+    callAPI('http://localhost:8080/api/tickets/'+ticket.ticketNumber,'PUT', ticket2);
+
   }
   if(tickets)
   return (
     <div className="App">
       <NavBar />
-      <UserViewRouter tickets={tickets} newTicket={newTicket} editTicket={editTicket} updateStatus={updateStatus} setTickets={setTickets}/>
+      <UserViewRouter tickets={tickets} newTicket={newTicket} editTicket={editTicket} deleteTicket={deleteTicket} updateStatus={updateStatus} setTickets={setTickets}/>
     </div>
   );
   else

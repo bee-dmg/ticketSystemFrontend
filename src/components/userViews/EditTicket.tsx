@@ -7,11 +7,12 @@ import TicketType from '../../interfaces/TicketInterface';
 import StatusSelector from './StatusSelector';
 import Status from '../../interfaces/StatusEnum';
 
-function EditTicket(props: { editTicket: Function, tickets: Array<TicketType> }) {
+function EditTicket(props: {updateStatus:Function, deleteTicket:Function, editTicket: Function, tickets: Array<TicketType> }) {
 
     let ticketId: any = useParams();
 
     const tickets = props.tickets;
+    const updateStatus = props.updateStatus;
     let ticket = tickets.find(element=> element.ticketNumber==ticketId.ticketId);
 
     if (ticket === undefined) {
@@ -19,7 +20,7 @@ function EditTicket(props: { editTicket: Function, tickets: Array<TicketType> })
       }
     const [title, setTitle] = useState(ticket.title);
     const [description, setDescription] = useState(ticket.description);
-    const [updateStatus, setUpdateStatus] = useState(ticket.status);
+    const [statusA, setStatus] = useState(ticket.status);
    
 if(ticket){
 
@@ -34,13 +35,15 @@ if(ticket){
                     <Form.Label>Ticket Title</Form.Label>
                     <Form.Control type="text" placeholder="Enter title" value={title} onChange={(e: any) => { setTitle(e.target.value); }} />
                     <Form.Control as="textarea" rows={3} placeholder="Enter description" value={description} onChange={(e: any) => { setDescription(e.target.value); }} />
-
-                    <StatusSelector status={updateStatus} setStatus={setUpdateStatus} />
-                </Form.Group>
+                    <div onMouseOut={() => { updateStatus(ticket, statusA);  }}>
+               
+                    <StatusSelector status={statusA} setStatus={setStatus} updateStatus={updateStatus}/>
+               </div> </Form.Group><div onMouseOver={() => { updateStatus(ticket, statusA);  }}>
+               
                 <Link to={`/view/${ticket.ticketNumber}`}><Button onClick={() => { if(ticket) {props.editTicket(
                     { ticketNumber: ticket.ticketNumber, 
-                        title: title, status: 
-                        updateStatus, 
+                        title: title, 
+                        status: statusA, 
                         email: ticket.email,
                         date:  new Date(), 
                         reporter: ticket.reporter, 
@@ -50,6 +53,13 @@ if(ticket){
                     }
                     >
                     Submit</Button>
+                </Link></div>
+
+                  <Link to={`/`}><Button className="warning" onClick={() => { if(ticket) {props.deleteTicket(ticket) 
+                    }}
+                    }
+                    >
+                    Delete</Button>
                 </Link>
             </Form>
 

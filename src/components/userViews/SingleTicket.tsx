@@ -10,6 +10,7 @@ function SingleTicket(props: { tickets: Array<TicketType>, updateStatus: Functio
 
     const tickets = props.tickets;
     const setTickets = props.setTickets;
+    const updateStatus = props.updateStatus;
     useEffect(()=>{  fetch('http://localhost:8080/api/tickets')
     .then((response) => response.json())
     .then((data) => {setTickets(data); 
@@ -20,11 +21,18 @@ function SingleTicket(props: { tickets: Array<TicketType>, updateStatus: Functio
     let ticketId: any = useParams();
 
 
-
+    useEffect(()=>{
+        if(ticket)
+            setStatus(ticket.status)
+    }
+    ,[]);
 
 
     let ticket = tickets.find(element=> element.ticketNumber==ticketId.ticketId);
-    const [status, setStatus] = useState(Status.OPEN);
+    let oldStatus;
+    {ticket? oldStatus=ticket.status:oldStatus=Status.OPEN}
+  
+    const [status, setStatus] = useState(oldStatus);
    
 if(ticket){
 const date = new Date(ticket.date);
@@ -39,7 +47,7 @@ const date = new Date(ticket.date);
             <div className="col-3">{ticket.ticketNumber}</div>
             <div className="col-3">Title:{ticket.title}</div>
             <div onMouseOut={() => { props.updateStatus(ticket, status);  }}>
-                <StatusSelector status={status} setStatus={setStatus} /></div>
+                <StatusSelector status={status} setStatus={setStatus}  updateStatus={updateStatus}/></div>
                 <div className="col-3">Status:{status}</div>
                 <div className="col-3">Reporter:{ticket.reporter}</div>
                 <div>Description:{ticket.description}</div>

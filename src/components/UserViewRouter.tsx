@@ -14,9 +14,11 @@ import SingleTicket from './userViews/SingleTicket';
 
 
 
-export default function UserViewRouter(props: { tickets: Array<TicketType>, newTicket: Function, editTicket: Function, updateStatus: Function , setTickets:Function}) {
+export default function UserViewRouter(props: { tickets: Array<TicketType>, newTicket: Function, editTicket: Function, deleteTicket:Function, updateStatus: Function , setTickets:Function}) {
     const tickets = props.tickets;
     const setTickets=props.setTickets;
+    const deleteTicket=props.deleteTicket;
+    const updateStatus = props.updateStatus;
     return (
         <div>
             <Routes>
@@ -24,9 +26,9 @@ export default function UserViewRouter(props: { tickets: Array<TicketType>, newT
 
                 <Route path="/" element={<TicketQueueView tickets={tickets} setTickets={setTickets} />} />
 
-                <Route path="/view/:ticketId" element={<SingleTicket tickets={tickets}  setTickets={setTickets} updateStatus={props.updateStatus} />} />
+                <Route path="/view/:ticketId" element={<SingleTicket tickets={tickets}  setTickets={setTickets} updateStatus={updateStatus} />} />
 
-                <Route path="/edit/:ticketId" element={<EditTicket editTicket={props.editTicket} tickets={tickets} />} />
+                <Route path="/edit/:ticketId" element={<EditTicket updateStatus={updateStatus} editTicket={props.editTicket} tickets={tickets} deleteTicket={deleteTicket} />} />
             </Routes>
 
         </div>

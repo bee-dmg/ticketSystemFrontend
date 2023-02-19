@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import TicketType from '../../interfaces/TicketInterface';
 import "../../styles/styles.css";
@@ -22,16 +21,8 @@ function TicketQueueView(props: { tickets: Array<TicketType>,setTickets:Function
     if (sortPref === "dateDown") {
         date = tickets.sort((a: TicketType, b: TicketType) => a.date > b.date ? -1 : 1);
     }
+
    
-    fetch('http://localhost:8080/api/tickets')
-    .then((response) => response.json())
-    .then((data) => {setTickets(data); 
-     
-    }).catch((error) => {
-        console.error('Error:', error);
-      });
-   
-    
         return (
             <><div>Sort By: 
                 <Link to="#" onClick={() => setSortPref("dateUp")}>Oldest First</Link> 
@@ -45,9 +36,9 @@ function TicketQueueView(props: { tickets: Array<TicketType>,setTickets:Function
                         <div className="col-2"><Link to={`/view/${ticket.ticketNumber}`}>{ticket.ticketNumber}</Link></div>
                         <div className="col-2">Date:{new Date(ticket.date).toDateString()}</div>
                     
-                        <div className="col-2">Title:{ticket.title}</div><div className="col-2">Status:{ticket.status.toLowerCase()}</div>
-                    <div className="col-2">Reporter:{ticket.reporter}</div>
-            
+                        <div className="col-2">{ticket.title}</div><div className="col-2">{ticket.status.toLowerCase()}</div>
+                    <div className="col-2">{ticket.reporter}</div>
+                    
             </div>)}</>
         )
    
