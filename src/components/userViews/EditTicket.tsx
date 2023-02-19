@@ -35,11 +35,9 @@ if(ticket){
                     <Form.Label>Ticket Title</Form.Label>
                     <Form.Control type="text" placeholder="Enter title" value={title} onChange={(e: any) => { setTitle(e.target.value); }} />
                     <Form.Control as="textarea" rows={3} placeholder="Enter description" value={description} onChange={(e: any) => { setDescription(e.target.value); }} />
-                    <div onMouseOut={() => { updateStatus(ticket, statusA);  }}>
-               
+                   
                     <StatusSelector status={statusA} setStatus={setStatus} updateStatus={updateStatus}/>
-               </div> </Form.Group><div onMouseOver={() => { updateStatus(ticket, statusA);  }}>
-               
+               </Form.Group>
                 <Link to={`/view/${ticket.ticketNumber}`}><Button onClick={() => { if(ticket) {props.editTicket(
                     { ticketNumber: ticket.ticketNumber, 
                         title: title, 
@@ -53,7 +51,7 @@ if(ticket){
                     }
                     >
                     Submit</Button>
-                </Link></div>
+                </Link>
 
                   <Link to={`/`}><Button className="warning" onClick={() => { if(ticket) {props.deleteTicket(ticket) 
                     }}

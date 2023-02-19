@@ -30,7 +30,7 @@ function SingleTicket(props: { tickets: Array<TicketType>, updateStatus: Functio
 
     let ticket = tickets.find(element=> element.ticketNumber==ticketId.ticketId);
     let oldStatus;
-    {ticket? oldStatus=ticket.status:oldStatus=Status.OPEN}
+    {ticket? oldStatus=ticket.status:oldStatus=""}
   
     const [status, setStatus] = useState(oldStatus);
    
@@ -46,9 +46,9 @@ const date = new Date(ticket.date);
                <div> Date:{date.toDateString()} {date.getHours()}:{date.getMinutes()}:{date.getSeconds()}</div>
             <div className="col-3">{ticket.ticketNumber}</div>
             <div className="col-3">Title:{ticket.title}</div>
-            <div onMouseOut={() => { props.updateStatus(ticket, status);  }}>
-                <StatusSelector status={status} setStatus={setStatus}  updateStatus={updateStatus}/></div>
-                <div className="col-3">Status:{status}</div>
+            <div onMouseUp={() => { props.updateStatus(ticket, status);  }}>
+                <StatusSelector status={ticket.status} setStatus={setStatus}  updateStatus={updateStatus}/></div>
+                <div className="col-3">Status:{ticket.status}</div>
                 <div className="col-3">Reporter:{ticket.reporter}</div>
                 <div>Description:{ticket.description}</div>
 
