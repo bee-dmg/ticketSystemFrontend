@@ -3,6 +3,7 @@ import NavBar from './NavBar';
 import UserViewRouter from './UserViewRouter';
 import TicketType from '../interfaces/TicketInterface';
 import Status from '../interfaces/StatusEnum';
+import { Container } from 'react-bootstrap';
 function Main() {
   const [tickets, setTickets] = useState([]);
   useEffect(() => {
@@ -10,7 +11,10 @@ function Main() {
     fetch('http://localhost:8080/api/tickets')
     .then((response) => response.json())
     .then((data) => {setTickets(data); 
-    });
+    }).catch((error) => {
+      
+      setTickets([])
+    });;
     
     const interval = setInterval(() => {
       console.log('This will run every second!');
@@ -67,8 +71,10 @@ callAPI('http://localhost:8080/api/tickets/'+ticket.id, 'DELETE',ticket)
   return (
     <div className="App">
       <NavBar />
+      <Container>
       <UserViewRouter tickets={tickets} newTicket={newTicket} editTicket={editTicket} deleteTicket={deleteTicket} updateStatus={updateStatus} setTickets={setTickets}/>
-    </div>
+    
+      </Container></div>
   );
   else
   return(   <div className="App">

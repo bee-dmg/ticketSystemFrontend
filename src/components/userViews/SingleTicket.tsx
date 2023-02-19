@@ -42,14 +42,14 @@ const date = new Date(ticket.date);
             
             <div className="row">
 
-                
+                <div>Ticket: {ticket.ticketNumber}</div>
                <div> Date:{date.toDateString()} {date.getHours()}:{date.getMinutes()}:{date.getSeconds()}</div>
-            <div className="col-3">{ticket.ticketNumber}</div>
-            <div className="col-3">Title:{ticket.title}</div>
-            <div onMouseUp={() => { props.updateStatus(ticket, status);  }}>
+            
+            <div className="col-12">Title:{ticket.title}</div>
+            <div className="col-3" onMouseUp={() => { props.updateStatus(ticket, status);  }}>
                 <StatusSelector status={ticket.status} setStatus={setStatus}  updateStatus={updateStatus}/></div>
-                <div className="col-3">Status:{ticket.status}</div>
-                <div className="col-3">Reporter:{ticket.reporter}</div>
+                <div className="col-3"><div className="col-3">Email:{ticket.email}</div>
+                <div className="col-3">Reporter:{ticket.reporter}</div></div>
                 <div>Description:{ticket.description}</div>
 
         </div></div></>

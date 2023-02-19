@@ -29,7 +29,7 @@ if(ticket){
 
     return (
         <div>
-
+            <Link to={`/view/${ticket.ticketNumber}`}>Back to Ticket</Link>
             <Form>
                 <Form.Group className="mb-3" controlId="formTicket">
                     <Form.Label>Ticket Title</Form.Label>

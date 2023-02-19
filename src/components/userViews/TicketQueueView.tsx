@@ -9,7 +9,12 @@ function TicketQueueView(props: { tickets: Array<TicketType>,setTickets:Function
     const setTickets=props.setTickets;
     const [sortPref, setSortPref] = useState("dateUp");
     let date = tickets.sort((a: TicketType, b: TicketType) => a.date > b.date ? 1 : -1);
-
+    useEffect(()=>{  fetch('http://localhost:8080/api/tickets')
+    .then((response) => response.json())
+    .then((data) => {setTickets(data); 
+    }).catch((error) => {
+        console.error('Error:', error);
+      });},[]);
     useEffect(()=>{  fetch('http://localhost:8080/api/tickets')
     .then((response) => response.json())
     .then((data) => {setTickets(data); 

@@ -8,7 +8,7 @@ function StatusSelector(props: { status: any, setStatus: any, updateStatus:Funct
     const setStatus = props.setStatus;
 
     return (
-        <><div>
+        <><div className="statusInput">
             <Form.Select aria-label="Default select example" className="statusInput" value={status} onChange={(e: any) => {setStatus(e.target.value);  }}>
 
                 <option value={Status.OPEN}>Open</option>
