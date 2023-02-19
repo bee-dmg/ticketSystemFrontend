@@ -5,17 +5,13 @@ import { Link } from 'react-router-dom';
 import TicketType from '../../interfaces/TicketInterface';
 import StatusSelector from './StatusSelector';
 import Status from '../../interfaces/StatusEnum';
-
+import apiCall from '../../apiCall/apiCall';
 function SingleTicket(props: { tickets: Array<TicketType>, updateStatus: Function, setTickets:Function }) {
 
     const tickets = props.tickets;
     const setTickets = props.setTickets;
     const updateStatus = props.updateStatus;
-    useEffect(()=>{  fetch('http://localhost:8080/api/tickets')
-    .then((response) => response.json())
-    .then((data) => {setTickets(data); 
-     
-    });},[tickets]);
+    useEffect(()=>{ apiCall(setTickets)},[tickets]);
 
 
     let ticketId: any = useParams();

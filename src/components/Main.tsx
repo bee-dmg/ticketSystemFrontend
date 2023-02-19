@@ -3,68 +3,37 @@ import NavBar from './NavBar';
 import UserViewRouter from './UserViewRouter';
 import TicketType from '../interfaces/TicketInterface';
 import Status from '../interfaces/StatusEnum';
+import apiCall from '../apiCall/apiCall';
 import { Container } from 'react-bootstrap';
 function Main() {
   const [tickets, setTickets] = useState([]);
   useEffect(() => {
 
-    fetch('http://localhost:8080/api/tickets')
-    .then((response) => response.json())
-    .then((data) => {setTickets(data); 
-    }).catch((error) => {
-      
-      setTickets([])
-    });;
+    apiCall(setTickets);
     
     const interval = setInterval(() => {
       console.log('This will run every second!');
-      fetch('http://localhost:8080/api/tickets')
-    .then((response) => response.json())
-    .then((data) => {setTickets(data); 
-    }).catch((error) => {
-      
-      setTickets([])
-    });
+      apiCall(setTickets)
     }, 10000);
     return () => clearInterval(interval);
   }, []);
-  function callAPI(url:string, methodType:string,ticket:TicketType){
-    fetch(url, {
-  method: methodType, // or 'PUT'
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(ticket),
-})
-  .then((response) => response.json())
-  .then((data) => {
-    console.log('Success:', data);
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-  });
-
-  fetch('http://localhost:8080/api/tickets')
-    .then((response) => response.json())
-    .then((data) => {setTickets(data);} )
-  }
-
+  
   function deleteTicket(ticket:TicketType){
-callAPI('http://localhost:8080/api/tickets/'+ticket.id, 'DELETE',ticket)
+apiCall(setTickets,ticket.id.toString(), 'DELETE',ticket)
   }
 
   function newTicket(ticket: TicketType) {
-    callAPI('http://localhost:8080/api/tickets','POST',ticket);
+    apiCall(setTickets,'','POST',ticket);
   }
   function editTicket(ticket: TicketType) {
-    callAPI('http://localhost:8080/api/tickets/'+ticket.ticketNumber,'PUT', ticket)
+    apiCall(setTickets,ticket.ticketNumber.toString(),'PUT', ticket)
   }
 
   
   function updateStatus(ticket: TicketType, status: Status) {
-    const ticket2 = { ...ticket, status: status };
+    const updateTicket = { ...ticket, status: status };
     //non functioning needs work with backend
-    callAPI('http://localhost:8080/api/tickets/'+ticket.ticketNumber,'PUT', ticket2);
+    apiCall(setTickets,ticket.ticketNumber.toString(),'PUT', updateTicket);
 
   }
   if(tickets)

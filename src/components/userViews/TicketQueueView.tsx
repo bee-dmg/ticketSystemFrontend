@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import TicketType from '../../interfaces/TicketInterface';
+import apiCall from '../../apiCall/apiCall';
 import "../../styles/styles.css";
 function TicketQueueView(props: { tickets: Array<TicketType>,setTickets:Function }) {
 
@@ -9,18 +10,8 @@ function TicketQueueView(props: { tickets: Array<TicketType>,setTickets:Function
     const setTickets=props.setTickets;
     const [sortPref, setSortPref] = useState("dateUp");
     let date = tickets.sort((a: TicketType, b: TicketType) => a.date > b.date ? 1 : -1);
-    useEffect(()=>{  fetch('http://localhost:8080/api/tickets')
-    .then((response) => response.json())
-    .then((data) => {setTickets(data); 
-    }).catch((error) => {
-        console.error('Error:', error);
-      });},[]);
-    useEffect(()=>{  fetch('http://localhost:8080/api/tickets')
-    .then((response) => response.json())
-    .then((data) => {setTickets(data); 
-    }).catch((error) => {
-        console.error('Error:', error);
-      });},[tickets]);
+    useEffect(()=>{  apiCall(setTickets)},[]);
+    useEffect(()=>{  apiCall(setTickets)},[tickets]);
 
 
     if (sortPref === "dateDown") {
