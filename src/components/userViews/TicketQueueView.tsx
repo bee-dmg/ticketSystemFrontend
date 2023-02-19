@@ -14,23 +14,22 @@ function TicketQueueView(props: { tickets: Array<TicketType>,setTickets:Function
     useEffect(()=>{  fetch('http://localhost:8080/api/tickets')
     .then((response) => response.json())
     .then((data) => {setTickets(data); 
-     
-    });},[tickets]);
-
-
+    }).catch((error) => {
+        console.error('Error:', error);
+      });},[tickets]);
 
 
     if (sortPref === "dateDown") {
-
         date = tickets.sort((a: TicketType, b: TicketType) => a.date > b.date ? -1 : 1);
-
     }
    
     fetch('http://localhost:8080/api/tickets')
     .then((response) => response.json())
     .then((data) => {setTickets(data); 
      
-    })
+    }).catch((error) => {
+        console.error('Error:', error);
+      });
    
     
         return (
