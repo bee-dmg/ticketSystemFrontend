@@ -4,22 +4,35 @@ import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import TicketType from '../../interfaces/TicketInterface';
 import "../../styles/styles.css";
-function TicketQueueView(props: { tickets: Array<TicketType> }) {
+function TicketQueueView(props: { tickets: Array<TicketType>,setTickets:Function }) {
 
-    const [tickets, setTickets] = useState(props.tickets);
+    const tickets = props.tickets;
+    const setTickets=props.setTickets;
     const [sortPref, setSortPref] = useState("dateUp");
     let date = tickets.sort((a: TicketType, b: TicketType) => a.date > b.date ? 1 : -1);
+
+    useEffect(()=>{  fetch('http://localhost:8080/api/tickets')
+    .then((response) => response.json())
+    .then((data) => {setTickets(data); 
+     
+    });},[tickets]);
+
+
+
 
     if (sortPref === "dateDown") {
 
         date = tickets.sort((a: TicketType, b: TicketType) => a.date > b.date ? -1 : 1);
 
     }
-
-    useEffect(() => {
-        setTickets(date);
-    }, [])
-    if (date.length > 0) {
+   
+    fetch('http://localhost:8080/api/tickets')
+    .then((response) => response.json())
+    .then((data) => {setTickets(data); 
+     
+    })
+   
+    
         return (
             <><div>Sort By: 
                 <Link to="#" onClick={() => setSortPref("dateUp")}>Oldest First</Link> 
@@ -28,21 +41,17 @@ function TicketQueueView(props: { tickets: Array<TicketType> }) {
                 </div>
                 <div className="row">
                    
-                    <div className="col-3">Title</div>
+                <div className="col-2">Ticket Number</div> <div className="col-2">Date</div> <div className="col-2">Title</div><div className="col-2">Status</div> <div className="col-2">Reporter</div>
                     </div>{tickets.map((ticket: TicketType) => <div className="row ticketQueueViewRow" key={ticket.key}>
                         <div className="col-2"><Link to={`/view/${ticket.ticketNumber}`}>{ticket.ticketNumber}</Link></div>
-                        <div className="col-3">Date:{ticket.date.toDateString()} {ticket.date.getHours()}:{ticket.date.getMinutes()}</div>
+                        <div className="col-2">Date:{new Date(ticket.date).toDateString()}</div>
                     
                         <div className="col-2">Title:{ticket.title}</div><div className="col-2">Status:{ticket.status.toLowerCase()}</div>
                     <div className="col-2">Reporter:{ticket.reporter}</div>
-                  <div className="col-12">Description:{ticket.description}</div>
-
+            
             </div>)}</>
         )
-    }
-    else {
-        return (<div>No tickets, yet!</div>)
-    }
+   
 }
 
 

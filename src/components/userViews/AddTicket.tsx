@@ -13,6 +13,7 @@ function AddTicket(props: { newTicket: Function, tickets: Array<TicketType> }) {
   const [description, setDescription] = useState("");
   const [reporter, setReporter] = useState("");
   const ukey: string = uuid();
+  
   const ticketNumber = props.tickets.length;
   return (
     <div>

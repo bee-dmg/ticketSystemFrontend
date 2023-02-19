@@ -12,12 +12,19 @@ function EditTicket(props: { editTicket: Function, tickets: Array<TicketType> })
     let ticketId: any = useParams();
 
     const tickets = props.tickets;
-    let ticket = tickets[parseInt(ticketId.ticketId)];
+    let ticket = tickets.find(element=> element.ticketNumber==ticketId.ticketId);
 
+    if (ticket === undefined) {
+        throw new TypeError('The value was promised to always be there!');
+      }
     const [title, setTitle] = useState(ticket.title);
     const [description, setDescription] = useState(ticket.description);
     const [updateStatus, setUpdateStatus] = useState(ticket.status);
    
+if(ticket){
+
+      
+
 
     return (
         <div>
@@ -30,7 +37,19 @@ function EditTicket(props: { editTicket: Function, tickets: Array<TicketType> })
 
                     <StatusSelector status={updateStatus} setStatus={setUpdateStatus} />
                 </Form.Group>
-                <Link to={`/view/${ticket.ticketNumber}`}><Button onClick={() => { props.editTicket({ ticketNumber: ticket.ticketNumber, title: title, status: updateStatus, date: new Date(), reporter: ticket.reporter, description: description }) }}>Submit</Button>
+                <Link to={`/view/${ticket.ticketNumber}`}><Button onClick={() => { if(ticket) {props.editTicket(
+                    { ticketNumber: ticket.ticketNumber, 
+                        title: title, status: 
+                        updateStatus, 
+                        email: ticket.email,
+                        date:  new Date(), 
+                        reporter: ticket.reporter, 
+                        description: description }
+                    ) 
+                    }}
+                    }
+                    >
+                    Submit</Button>
                 </Link>
             </Form>
 
@@ -39,6 +58,10 @@ function EditTicket(props: { editTicket: Function, tickets: Array<TicketType> })
 
 
     )
+}
+else{
+    return(<div>No Ticket found, please try again. ERROR: EditTicket.tsx</div>)
+}
 }
 
 
