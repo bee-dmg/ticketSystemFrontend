@@ -21,9 +21,12 @@ function SingleTicket(props: {
   );
   useEffect(() => {
     apiCall(setTickets);
-    if(ticket&&status==="")
+    let x = 0;
+    if(ticket&&x<5){
     setStatus(ticket.status)
-  }, [ticket]);
+    }
+    x++;
+  }, [ticket, setTickets]);
 
  
 
@@ -58,7 +61,7 @@ function SingleTicket(props: {
               }}
             >
               <StatusSelector
-                status={ticket.status}
+                status={status}
                 setStatus={setStatus}
                 updateStatus={updateStatus}
               />
