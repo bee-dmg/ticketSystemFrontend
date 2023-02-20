@@ -16,25 +16,7 @@ function AddTicket(props: { newTicket: Function; tickets: Array<TicketType> }) {
     <div>
       <Form>
         <Form.Group className="mb-3" controlId="formTicket">
-          <Form.Label>Reporter</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter reporter"
-            value={reporter}
-            onChange={(e: any) => {
-              setReporter(e.target.value);
-            }}
-          />
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter email"
-            value={email}
-            onChange={(e: any) => {
-              setEmail(e.target.value);
-            }}
-          />
-          <Form.Label>Title</Form.Label>
+        <Form.Label>Title</Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter title"
@@ -52,7 +34,25 @@ function AddTicket(props: { newTicket: Function; tickets: Array<TicketType> }) {
             onChange={(e: any) => {
               setDescription(e.target.value);
             }}
+          /><Form.Label>Reporter</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter reporter"
+            value={reporter}
+            onChange={(e: any) => {
+              setReporter(e.target.value);
+            }}
           />
+          <Form.Label>Email</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter email"
+            value={email}
+            onChange={(e: any) => {
+              setEmail(e.target.value);
+            }}
+          />
+        
         </Form.Group>
         <Link to="/">
           {" "}
