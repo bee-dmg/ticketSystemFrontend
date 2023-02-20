@@ -4,7 +4,6 @@ import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import TicketType from "../../interfaces/TicketInterface";
 import StatusSelector from "./StatusSelector";
-import Status from "../../interfaces/StatusEnum";
 import apiCall from "../../apiCall/apiCall";
 function SingleTicket(props: {
   tickets: Array<TicketType>;
@@ -14,23 +13,25 @@ function SingleTicket(props: {
   const tickets = props.tickets;
   const setTickets = props.setTickets;
   const updateStatus = props.updateStatus;
-  useEffect(() => {
-    apiCall(setTickets);
-  }, [tickets]);
-
   let ticketId: any = useParams();
 
-  useEffect(() => {
-    if (ticket) setStatus(ticket.status);
-  }, []);
-
+ 
   let ticket = tickets.find(
-    (element) => element.ticketNumber == ticketId.ticketId
+    (element) => element.ticketNumber === ticketId.ticketId
   );
-  let oldStatus;
-  {
-    ticket ? (oldStatus = ticket.status) : (oldStatus = "");
-  }
+  useEffect(() => {
+    apiCall(setTickets);
+    if(ticket&&status==="")
+    setStatus(ticket.status)
+  }, [ticket]);
+
+ 
+
+
+  let oldStatus="";
+  
+    if(ticket ){ oldStatus = ticket.status };
+  
 
   const [status, setStatus] = useState(oldStatus);
 

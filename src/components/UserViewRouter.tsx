@@ -49,6 +49,7 @@ export default function UserViewRouter(props: {
           path="/edit/:ticketId"
           element={
             <EditTicket
+            setTickets={setTickets}
               updateStatus={updateStatus}
               editTicket={props.editTicket}
               tickets={tickets}

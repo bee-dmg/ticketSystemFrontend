@@ -9,9 +9,7 @@ function Main() {
   const [tickets, setTickets] = useState([]);
   useEffect(() => {
     apiCall(setTickets);
-
     const interval = setInterval(() => {
-      console.log("This will run every second!");
       apiCall(setTickets);
     }, 10000);
     return () => clearInterval(interval);
@@ -30,7 +28,6 @@ function Main() {
 
   function updateStatus(ticket: TicketType, status: Status) {
     const updateTicket = { ...ticket, status: status };
-    //non functioning needs work with backend
     apiCall(setTickets, ticket.ticketNumber.toString(), "PUT", updateTicket);
   }
   if (tickets)
