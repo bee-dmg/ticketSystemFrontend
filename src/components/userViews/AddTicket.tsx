@@ -21,8 +21,6 @@ else
   prevTicketNum=0;
 const prevTicketNumInt:number= +prevTicketNum;
 const newTicketNum = prevTicketNumInt + 1;
-console.log(prevTicketNum+"    =prev ticket num")
-console.log(prevTicketNumInt)
 const ticketNumber=newTicketNum.toString(); 
 
 return (
