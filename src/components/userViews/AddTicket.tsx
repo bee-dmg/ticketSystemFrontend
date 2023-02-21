@@ -11,10 +11,23 @@ function AddTicket(props: { newTicket: Function; tickets: Array<TicketType> }) {
   const [description, setDescription] = useState("");
   const [reporter, setReporter] = useState("");
   const ukey: string = uuid();
-  const ticketNumber = props.tickets.length;
-  return (
+  const tickets = props.tickets;
+  let prevTicketNum;
+  if(tickets.length>0){
+prevTicketNum=tickets[tickets.length-1].ticketNumber?tickets[tickets.length-1].ticketNumber:1;
+
+  }
+else
+  prevTicketNum=0;
+const prevTicketNumInt:number= +prevTicketNum;
+const newTicketNum = prevTicketNumInt + 1;
+console.log(prevTicketNum+"    =prev ticket num")
+console.log(prevTicketNumInt)
+const ticketNumber=newTicketNum.toString(); 
+
+return (
     <div>
-      <Form>
+      <Form >
         <Form.Group className="mb-3" controlId="formTicket">
         <Form.Label>Title</Form.Label>
           <Form.Control
@@ -56,7 +69,7 @@ function AddTicket(props: { newTicket: Function; tickets: Array<TicketType> }) {
         </Form.Group>
         <Link to="/">
           {" "}
-          <Button
+          <Button type="submit"
             onClick={() => {
               props.newTicket({
                 ticketNumber: ticketNumber,
