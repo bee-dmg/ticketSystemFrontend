@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Button, Form} from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import TicketType from "../../interfaces/TicketInterface";

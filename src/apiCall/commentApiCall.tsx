@@ -1,6 +1,6 @@
 import CommentType from "../interfaces/CommentInterface";
 function commentApiCall(
-  setTickets?: Function,
+  setComments?: Function,
   url?: string,
   methodType?: string,
   comment?: CommentType
@@ -42,18 +42,18 @@ if(url==="/"){
       });
   }
 
-  if (setTickets) {
+  if (setComments) {
     fetch(apiEndPoint, {method:'GET', headers:{  "Content-Type": "application/json",
     'Access-Control-Allow-Origin':'*',
                 'Access-Control-Allow-Methods':'POST,PATCH,OPTIONS'
   }})
       .then((response) => response.json())
       .then((data) => {
-        setTickets(data);
+        setComments(data);
       })
       .catch((error) => {
         console.error("Error:", error);
-        setTickets([]);
+        setComments([]);
       });
   }
 }

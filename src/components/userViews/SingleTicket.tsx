@@ -7,6 +7,7 @@ import StatusSelector from "./StatusSelector";
 import apiCall from "../../apiCall/ticketApiCall";
 import commentApiCall from "../../apiCall/commentApiCall";
 import CommentType from "../../interfaces/CommentInterface";
+import CommentView from "./commentViews/CommentView";
 function SingleTicket(props: {
   tickets: Array<TicketType>;
   updateStatus: Function;
@@ -31,9 +32,9 @@ function SingleTicket(props: {
     }
     x++;
 
-  }, [ticket]);
+  }, []);
 
-  let commentFiltered = comments.filter((element:CommentType)=> element.ticketNumber === ticketId.ticketId);
+  let commentFiltered = comments.filter((element: CommentType) => element.ticketNumber === ticketId.ticketId);
 
 
 
@@ -80,8 +81,9 @@ function SingleTicket(props: {
               <div className="col-3">Reporter:{ticket.reporter}</div>
             </div>
             <div>Description:{ticket.description}</div>
-
-            {commentFiltered!==undefined?(commentFiltered.map((comment:CommentType)=>(<div key={comment.id}><div>ID: {comment.id}</div><div>User: {comment.user}</div><div>Time Posted: {comment.date.toString()}</div><div>{comment.comment}</div></div>))):(<div></div>)}
+              <CommentView comments={commentFiltered} setComments={setComments} />
+            {/* {commentFiltered !== undefined ? (commentFiltered.map((comment: CommentType) => (<div key={comment.id}><div>ID: {comment.id}</div><div>User: {comment.user}</div><div>Time Posted: {comment.date.toString()}</div><div>{comment.comment}</div></div>))) : (<div></div>)} */}
+          
           </div>
         </div>
       </>
