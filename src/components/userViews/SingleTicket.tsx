@@ -32,7 +32,7 @@ function SingleTicket(props: {
     }
     x++;
 
-  }, []);
+  }, [ticket, setTickets]);
 
   let commentFiltered = comments.filter((element: CommentType) => element.ticketNumber === ticketId.ticketId);
 
