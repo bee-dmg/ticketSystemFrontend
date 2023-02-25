@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import TicketType from "../../interfaces/TicketInterface";
 import apiCall from "../../apiCall/ticketApiCall";
+import Sort from "./Sort";
 import "../../styles/styles.css";
 function TicketQueueView(props: {
   tickets: Array<TicketType>;
@@ -27,16 +28,7 @@ function TicketQueueView(props: {
   }
   return (
     <>
-      <div>
-        Sort By:
-        <Link to="#" onClick={() => setSortPref("dateUp")}>
-          Oldest First
-        </Link>
-        /
-        <Link to="#" onClick={() => setSortPref("dateDown")}>
-          Newest First
-        </Link>
-      </div>
+    <Sort setSortPref={setSortPref}/>
       <div className="row">
         <div className="col-2">Ticket Number</div>{" "}
         <div className="col-2">Date</div> <div className="col-2">Title</div>

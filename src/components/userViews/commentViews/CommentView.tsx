@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import CommentType from "../../../interfaces/CommentInterface";
 import CommentApiCall from "../../../apiCall/commentApiCall";
 import "../../../styles/styles.css";
+import Sort from "../Sort";
 function CommentView(props: {
     comments: Array<CommentType>;
     setComments: Function;
@@ -27,8 +28,10 @@ function CommentView(props: {
     }
     if(comments!==undefined){
     return (
-       <div>{comments.map((comment: CommentType) => (<div key={comment.id}><div>ID: {comment.id}</div><div>User: {comment.user}</div><div>Time Posted: {comment.date.toString()}</div><div>{comment.comment}</div></div>))}
-          
+       <div>
+        <Sort setSortPref={setSortPref} />
+        <div>{comments.map((comment: CommentType) => (<div key={comment.id}><div>ID: {comment.id}</div><div>User: {comment.user}</div><div>Time Posted: {comment.date.toString()}</div><div>{comment.comment}</div></div>))}
+        </div>
     </div>
 
     )}
