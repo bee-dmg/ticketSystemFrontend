@@ -81,8 +81,7 @@ function SingleTicket(props: {
               <div className="col-3">Reporter:{ticket.reporter}</div>
             </div>
             <div>Description:{ticket.description}</div>
-              <CommentView comments={commentFiltered} setComments={setComments} />
-            {/* {commentFiltered !== undefined ? (commentFiltered.map((comment: CommentType) => (<div key={comment.id}><div>ID: {comment.id}</div><div>User: {comment.user}</div><div>Time Posted: {comment.date.toString()}</div><div>{comment.comment}</div></div>))) : (<div></div>)} */}
+              <CommentView ticket={ticket} comments={commentFiltered} setComments={setComments} />
           
           </div>
         </div>
