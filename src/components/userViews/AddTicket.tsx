@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Button, Form, InputGroup } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import TicketType from "../../interfaces/TicketInterface";
 import uuid from "react-uuid";

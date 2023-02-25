@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import TicketType from "../../interfaces/TicketInterface";
-import apiCall from "../../apiCall/apiCall";
+import apiCall from "../../apiCall/ticketApiCall";
 import "../../styles/styles.css";
 function TicketQueueView(props: {
   tickets: Array<TicketType>;

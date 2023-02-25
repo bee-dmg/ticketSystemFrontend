@@ -3,7 +3,7 @@ import NavBar from "./NavBar";
 import UserViewRouter from "./UserViewRouter";
 import TicketType from "../interfaces/TicketInterface";
 import Status from "../interfaces/StatusEnum";
-import apiCall from "../apiCall/apiCall";
+import apiCall from "../apiCall/ticketApiCall";
 import { Container } from "react-bootstrap";
 function Main() {
   const [tickets, setTickets] = useState([]);

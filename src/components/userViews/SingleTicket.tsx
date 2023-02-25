@@ -4,37 +4,46 @@ import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import TicketType from "../../interfaces/TicketInterface";
 import StatusSelector from "./StatusSelector";
-import apiCall from "../../apiCall/apiCall";
+import apiCall from "../../apiCall/ticketApiCall";
+import commentApiCall from "../../apiCall/commentApiCall";
+import CommentType from "../../interfaces/CommentInterface";
 function SingleTicket(props: {
   tickets: Array<TicketType>;
   updateStatus: Function;
   setTickets: Function;
 }) {
+  const [comments, setComments] = useState<any>([]);
   const tickets = props.tickets;
   const setTickets = props.setTickets;
   const updateStatus = props.updateStatus;
   let ticketId: any = useParams();
 
- 
+
   let ticket = tickets.find(
     (element) => element.ticketNumber === ticketId.ticketId
   );
   useEffect(() => {
+    commentApiCall(setComments);
     apiCall(setTickets);
     let x = 0;
-    if(ticket&&x<5){
-    setStatus(ticket.status)
+    if (ticket && x < 5) {
+      setStatus(ticket.status)
     }
     x++;
   }, [ticket, setTickets]);
 
- 
+  let commentFiltered = comments.find((element:CommentType)=> element.ticketNumber === ticketId.ticketId);
+
+  console.log(commentFiltered)
 
 
-  let oldStatus="";
-  
-    if(ticket ){ oldStatus = ticket.status };
-  
+
+
+
+  let oldStatus = "";
+
+  if (ticket) { oldStatus = ticket.status };
+
 
   const [status, setStatus] = useState(oldStatus);
 
@@ -71,6 +80,8 @@ function SingleTicket(props: {
               <div className="col-3">Reporter:{ticket.reporter}</div>
             </div>
             <div>Description:{ticket.description}</div>
+
+            {commentFiltered!==undefined?(commentFiltered.map((comment:CommentType)=>(<div><div>ID: {comment.id}</div><div>User: {comment.user}</div><div>Time Posted: {comment.date.toString()}</div><div>{comment.comment}</div></div>))):(<div></div>)}
           </div>
         </div>
       </>

@@ -1,40 +1,39 @@
 import React from "react";
-import { useState,useEffect } from "react";
-import { Button, Form, InputGroup } from "react-bootstrap";
+import { useState, useEffect } from "react";
+import { Button, Form} from "react-bootstrap";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import TicketType from "../../interfaces/TicketInterface";
 import StatusSelector from "./StatusSelector";
 
-import Status from "../../interfaces/StatusEnum";
-import apiCall from "../../apiCall/apiCall";
+import apiCall from "../../apiCall/ticketApiCall";
 
 function EditTicket(props: {
   updateStatus: Function;
   deleteTicket: Function;
   editTicket: Function;
   tickets: Array<TicketType>;
-  setTickets:Function;
+  setTickets: Function;
 }) {
   let ticketId: any = useParams();
   const tickets = props.tickets;
   const updateStatus = props.updateStatus;
-  const setTickets=props.setTickets;
+  const setTickets = props.setTickets;
   let ticket = tickets.find(
     (element) => element.ticketNumber == ticketId.ticketId
   );
-useEffect(()=>{
-  apiCall(setTickets);
-  ticket = tickets.find(
-    (element) => element.ticketNumber == ticketId.ticketId
-  );
-  if(ticket&&statusA===""){
-     
-    setStatusA(ticket.status);
-  }
+  useEffect(() => {
+    apiCall(setTickets);
+    ticket = tickets.find(
+      (element) => element.ticketNumber == ticketId.ticketId
+    );
+    if (ticket && statusA === "") {
+
+      setStatusA(ticket.status);
+    }
 
 
-},[ticket])
+  }, [ticket])
   if (ticket === undefined) {
     throw new TypeError("The value was promised to always be there!");
   }
