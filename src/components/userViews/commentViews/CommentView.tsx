@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import CommentType from "../../../interfaces/CommentInterface";
 import commentApiCall from "../../../apiCall/commentApiCall";
 import AddComment from "./AddComment";
+import SingleComment from "./SingleComment";
 import "../../../styles/styles.css";
 import TicketType from "../../../interfaces/TicketInterface";
 import Sort from "../Sort";
@@ -27,6 +28,10 @@ function CommentView(props: {
     function newComment (comment:CommentType){
         commentApiCall(setComments,"/","POST",comment);
     }
+    function deleteComment(comment:CommentType){
+        commentApiCall(setComments, comment.id.toString(), "DELETE", comment);
+    }
+   
 
    
     // useEffect(() => {
@@ -40,12 +45,14 @@ function CommentView(props: {
     if(commentView==="add"){
         return(<AddComment ticket={props.ticket} newComment={newComment} setCommentView={setCommentView}/>)
     }
+
     if(comments!==undefined){
+        console.log(comments)
     return (
        <div>
         <CommentNavBar setCommentView={setCommentView}/>
         <Sort setSortPref={setSortPref} />
-        <div>{comments.map((comment: CommentType) => (<div key={comment.id}><div>ID: {comment.id}</div><div>User: {comment.user}</div><div>Time Posted: {comment.date.toString()}</div><div>{comment.title}</div><div>{comment.comment}</div></div>))}
+        <div>{comments.map((comment: CommentType) => (<SingleComment comment={comment} deleteComment={deleteComment}/>))}
         </div>
     </div>
 
