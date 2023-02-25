@@ -30,7 +30,8 @@ function SingleTicket(props: {
       setStatus(ticket.status)
     }
     x++;
-  }, [ticket, setTickets]);
+
+  }, [ticket]);
 
   let commentFiltered = comments.filter((element:CommentType)=> element.ticketNumber === ticketId.ticketId);
 
@@ -64,7 +65,7 @@ function SingleTicket(props: {
             <div className="col-12">Title:{ticket.title}</div>
             <div
               className="col-3"
-              onMouseUp={() => {
+              onMouseOut={() => {
                 props.updateStatus(ticket, status);
               }}
             >
