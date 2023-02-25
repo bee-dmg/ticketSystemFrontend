@@ -32,9 +32,8 @@ function SingleTicket(props: {
     x++;
   }, [ticket, setTickets]);
 
-  let commentFiltered = comments.find((element:CommentType)=> element.ticketNumber === ticketId.ticketId);
+  let commentFiltered = comments.filter((element:CommentType)=> element.ticketNumber === ticketId.ticketId);
 
-  console.log(commentFiltered)
 
 
 
@@ -81,7 +80,7 @@ function SingleTicket(props: {
             </div>
             <div>Description:{ticket.description}</div>
 
-            {commentFiltered!==undefined?(commentFiltered.map((comment:CommentType)=>(<div><div>ID: {comment.id}</div><div>User: {comment.user}</div><div>Time Posted: {comment.date.toString()}</div><div>{comment.comment}</div></div>))):(<div></div>)}
+            {commentFiltered!==undefined?(commentFiltered.map((comment:CommentType)=>(<div key={comment.id}><div>ID: {comment.id}</div><div>User: {comment.user}</div><div>Time Posted: {comment.date.toString()}</div><div>{comment.comment}</div></div>))):(<div></div>)}
           </div>
         </div>
       </>

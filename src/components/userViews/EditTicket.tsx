@@ -24,6 +24,7 @@ function EditTicket(props: {
   );
   useEffect(() => {
     apiCall(setTickets);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     ticket = tickets.find(
       (element) => element.ticketNumber == ticketId.ticketId
     );
