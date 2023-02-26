@@ -10,6 +10,7 @@ interface TicketType {
   reporter: string;
   email: string;
   status: Status;
+  projectName:string;
 }
 
 export default TicketType;

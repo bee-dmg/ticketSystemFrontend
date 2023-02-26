@@ -28,28 +28,33 @@ function TicketQueueView(props: {
   }
   return (
     <>
-    <Sort setSortPref={setSortPref}/>
+    <Sort setSortPref={setSortPref}/> <div className="ticketQueueView">
       <div className="row">
-        <div className="col-2">Ticket Number</div>{" "}
-        <div className="col-2">Date</div> <div className="col-2">Title</div>
-        <div className="col-2">Status</div>{" "}
-        <div className="col-2">Reporter</div>
+      <div className="col-2">Project</div>{" "}
+        <div className="col-1">Ticket</div>{" "}
+        <div className="col-2">Date</div>
+         <div className="col-4">Title</div>
+        <div className="col-1">Status</div>{" "}
+        <div className="col-1">Reporter</div>
       </div>
       {tickets.map((ticket: TicketType) => (
         <div className="row ticketQueueViewRow" key={ticket.key}>
-          <div className="col-2">
+          <div className="col-2">{ticket.projectName}</div>
+          <div className="col-1">
             <Link to={`/view/${ticket.ticketNumber}`}>
               {ticket.ticketNumber}
             </Link>
           </div>
           <div className="col-2">
-            Date:{new Date(ticket.date).toDateString()}
+            {new Date(ticket.date).toDateString()}
           </div>
-          <div className="col-2">{ticket.title}</div>
-          <div className="col-2">{ticket.status.toLowerCase()}</div>
-          <div className="col-2">{ticket.reporter}</div>
+          <div className="col-4">{ticket.title}</div>
+          <div className="col-1">{ticket.status.toLowerCase()}</div>
+          <div className="col-1">{ticket.reporter}</div>
+          
         </div>
       ))}
+      </div>
     </>
   );
 }

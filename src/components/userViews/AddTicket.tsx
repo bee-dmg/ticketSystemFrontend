@@ -10,6 +10,7 @@ function AddTicket(props: { newTicket: Function; tickets: Array<TicketType> }) {
   const [email, setEmail] = useState("");
   const [description, setDescription] = useState("");
   const [reporter, setReporter] = useState("");
+  const [projectName, setProjectName] = useState("");
   const ukey: string = uuid();
   const tickets = props.tickets;
   let prevTicketNum;
@@ -63,7 +64,15 @@ return (
               setEmail(e.target.value);
             }}
           />
-        
+             <Form.Label>Project Name</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter project name"
+            value={projectName}
+            onChange={(e: any) => {
+              setProjectName(e.target.value);
+            }}
+          />
         </Form.Group>
         <Link to="/">
           {" "}
@@ -78,6 +87,7 @@ return (
                 date: new Date(),
                 description: description,
                 reporter: reporter,
+                projectName:projectName
               });
             }}
           >

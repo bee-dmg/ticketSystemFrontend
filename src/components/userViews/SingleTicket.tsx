@@ -56,6 +56,7 @@ function SingleTicket(props: {
           <Link to={`/edit/${ticket.ticketNumber}`}>Edit Ticket</Link>
 
           <div className="row">
+            <div>Project: {ticket.projectName}</div>
             <div>Ticket: {ticket.ticketNumber}</div>
             <div>
               {" "}
