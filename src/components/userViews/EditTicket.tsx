@@ -20,15 +20,15 @@ function EditTicket(props: {
   const updateStatus = props.updateStatus;
   const setTickets = props.setTickets;
   let ticket = tickets.find(
-    (element) => element.ticketNumber == ticketId.ticketId
+    (element) => element.ticketNumber === ticketId.ticketId
   );
   useEffect(() => {
     apiCall(setTickets);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     ticket = tickets.find(
-      (element) => element.ticketNumber == ticketId.ticketId
+      (element) => element.ticketNumber === ticketId.ticketId
     );
-    if (ticket && statusA === "") {
+    if (ticket && statusA==="" ) {
 
       setStatusA(ticket.status);
     }

@@ -9,6 +9,7 @@ import "../../../styles/styles.css";
 import TicketType from "../../../interfaces/TicketInterface";
 import Sort from "../Sort";
 import CommentNavBar from "./CommentNavBar";
+import EditComment from "./EditComment";
 function CommentView(props: {
     comments: Array<CommentType>;
     setComments: Function;
@@ -18,18 +19,22 @@ function CommentView(props: {
     const setComments = props.setComments;
     const [sortPref, setSortPref] = useState("dateUp");
     const [commentView, setCommentView]=useState("");
+    const [singleComment, setSingleComment]=useState();
     let date = comments.sort((a: CommentType, b: CommentType) =>
         a.date > b.date ? 1 : -1
     );
-    useEffect(() => {
-        commentApiCall(setComments);
-    }, [setComments]);
+    // useEffect(() => {
+    //     commentApiCall(setComments);
+    // }, [setComments]);
 
     function newComment (comment:CommentType){
         commentApiCall(setComments,"/","POST",comment);
     }
     function deleteComment(comment:CommentType){
         commentApiCall(setComments, comment.id.toString(), "DELETE", comment);
+    }
+    function editComment(comment:CommentType){
+        commentApiCall(setComments,comment.keyValue,"PUT",comment);
     }
    
 
@@ -45,14 +50,20 @@ function CommentView(props: {
     if(commentView==="add"){
         return(<AddComment ticket={props.ticket} newComment={newComment} setCommentView={setCommentView}/>)
     }
+    if(commentView==="edit"){
+        return(<div>edit
+<EditComment setCommentView={setCommentView} editComment={editComment} singleComment={singleComment} setSingleComment={setSingleComment}/>
+          
+        </div>)
+    }
 
     if(comments!==undefined){
-        console.log(comments)
+       
     return (
        <div>
         <CommentNavBar setCommentView={setCommentView}/>
         <Sort setSortPref={setSortPref} />
-        <div>{comments.map((comment: CommentType) => (<SingleComment comment={comment} deleteComment={deleteComment}/>))}
+        <div>{comments.map((comment: CommentType) => (<SingleComment key={comment.id} comment={comment} setCommentView={setCommentView} deleteComment={deleteComment} setSingleComment={setSingleComment}/>))}
         </div>
     </div>
 

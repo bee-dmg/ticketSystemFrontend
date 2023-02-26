@@ -1,5 +1,7 @@
 
 interface CommentType {
+
+  keyValue: string;
   ticketNumber: number;
   title: string;
   id: number;
