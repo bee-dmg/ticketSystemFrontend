@@ -25,8 +25,8 @@ const newTicketNum = prevTicketNumInt + 1;
 const ticketNumber=newTicketNum.toString(); 
 
 return (
-    <div>
-      <Form >
+    <div className="addTicketDashboardOrder">
+      <Form>
         <Form.Group className="mb-3" controlId="formTicket">
         <Form.Label>Title</Form.Label>
           <Form.Control
