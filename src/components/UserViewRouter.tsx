@@ -3,6 +3,7 @@ import AddTicket from "./userViews/AddTicket";
 import TicketQueueView from "./userViews/TicketQueueView";
 import EditTicket from "./userViews/EditTicket";
 import TicketType from "../interfaces/TicketInterface";
+import Dashboard from "./userViews/Dashboard";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SingleTicket from "./userViews/SingleTicket";
@@ -19,6 +20,7 @@ export default function UserViewRouter(props: {
   const setTickets = props.setTickets;
   const deleteTicket = props.deleteTicket;
   const updateStatus = props.updateStatus;
+  const newTicket = props.newTicket;
   return (
     <div>
       <Routes>
@@ -30,7 +32,7 @@ export default function UserViewRouter(props: {
         <Route
           path="/"
           element={
-            <TicketQueueView tickets={tickets} setTickets={setTickets} />
+            <Dashboard tickets={tickets} setTickets={setTickets} newTicket={newTicket} />
           }
         />
 
