@@ -12,13 +12,21 @@ function SingleTicket(props: {
   tickets: Array<TicketType>;
   updateStatus: Function;
   setTickets: Function;
+  currentTicket?:string;
 }) {
   const [comments, setComments] = useState<any>([]);
   const tickets = props.tickets;
   const setTickets = props.setTickets;
   const updateStatus = props.updateStatus;
+  const currentTicket=props.currentTicket;
   let ticketId: any = useParams();
+  if(!ticketId.ticketId){
+  console.log("hello");
+  if(currentTicket){
+    ticketId.ticketId=currentTicket;
 
+  }
+}
 
   let ticket = tickets.find(
     (element) => element.ticketNumber === ticketId.ticketId

@@ -32,7 +32,7 @@ export default function UserViewRouter(props: {
         <Route
           path="/"
           element={
-            <Dashboard tickets={tickets} setTickets={setTickets} newTicket={newTicket} />
+            <Dashboard  updateStatus={updateStatus} tickets={tickets} setTickets={setTickets} newTicket={newTicket} />
           }
         />
 
