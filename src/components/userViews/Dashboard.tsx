@@ -5,6 +5,8 @@ import TicketQueueView from './TicketQueueView';
 import AddTicket from './AddTicket';
 import "../../styles/styles.css";
 import SingleTicket from './SingleTicket';
+import AddComment from './commentViews/AddComment';
+import commentApiCall from '../../apiCall/commentApiCall';
 
 function Dashboard(props: {
     tickets: Array<TicketType>;
@@ -17,6 +19,7 @@ function Dashboard(props: {
    const newTicket = props.newTicket;
    const updateStatus = props.updateStatus;
    const[currentTicket,setCurrentTicket]=useState();
+
   return (
     <div>
 <TicketQueueView tickets={tickets} setTickets={setTickets} setCurrentTicket={setCurrentTicket}/>
@@ -25,9 +28,13 @@ function Dashboard(props: {
 <AddTicket tickets ={tickets} newTicket={newTicket}/></div>
 <div className="singleTicketDashboard">
 <SingleTicket updateStatus={updateStatus} tickets={tickets} setTickets={setTickets} currentTicket={currentTicket}/></div>
-</div>
+
+<div className="addCommentDashboard">
+    {currentTicket?<AddComment ticket={currentTicket} setCommentView={()=>{}} newComment={(comment:any)=>{commentApiCall((()=>{}),"/","POST",comment);}}/>:<div>Please select a ticket to view comments.</div>}
+    </div></div>
   </div>
   )
+
 }
 
 export default Dashboard;

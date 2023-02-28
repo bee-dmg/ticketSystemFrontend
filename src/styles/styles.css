@@ -16,10 +16,11 @@
     display:flex;
 }
 .singleTicketDashboard{
-    height: 100%;
+    height: 75vh;
     width: 60%;
     padding:10px;
    
+    overflow-y: scroll;
     overflow-x:hidden;
     font-size:12px;
     display:flex;
@@ -29,12 +30,11 @@
 }
 
 .addTicketDashboard{
-    height: 100%;
+    height: 75vh;
     width: 20%;
     padding:10px;
    
     overflow-x:hidden;
-    font-size:12px;
     display:flex;
     flex-direction:row;
     font-size:12px;
@@ -52,4 +52,11 @@
   
     font-size:12px;
  
+}
+
+.addCommentDashboard{
+    height: 75vh;
+    display:flex;
+    flex-direction:row;
+    font-size:12px;
 }

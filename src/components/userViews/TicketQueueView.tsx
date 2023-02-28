@@ -40,7 +40,7 @@ function TicketQueueView(props: {
         <div className="col-1">Reporter</div>
       </div>
       {tickets.map((ticket: TicketType) => (
-        <div className="row ticketQueueViewRow" key={ticket.key} onClick={()=>{console.log(ticket.ticketNumber); if(setCurrentTicket){setCurrentTicket(ticket.ticketNumber);}}}>
+        <div className="row ticketQueueViewRow" key={ticket.key} onClick={()=>{console.log(ticket.ticketNumber); if(setCurrentTicket){setCurrentTicket(ticket);}}}>
           <div className="col-2">{ticket.projectName}</div>
           <div className="col-1">
             <Link to={`/view/${ticket.ticketNumber}`}>

@@ -12,7 +12,7 @@ function SingleTicket(props: {
   tickets: Array<TicketType>;
   updateStatus: Function;
   setTickets: Function;
-  currentTicket?:string;
+  currentTicket?:any;
 }) {
   const [comments, setComments] = useState<any>([]);
   const tickets = props.tickets;
@@ -21,9 +21,8 @@ function SingleTicket(props: {
   const currentTicket=props.currentTicket;
   let ticketId: any = useParams();
   if(!ticketId.ticketId){
-  console.log("hello");
   if(currentTicket){
-    ticketId.ticketId=currentTicket;
+    ticketId.ticketId=currentTicket.ticketNumber;
 
   }
 }

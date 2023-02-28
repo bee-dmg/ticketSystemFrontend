@@ -51,7 +51,8 @@ function AddComment(props:{setCommentView:Function, ticket:TicketType, newCommen
        
           {" "}
           <Button type="submit"
-            onClick={() => {setCommentView("");
+            onClick={(e) => {setCommentView("");
+            e.preventDefault();
               props.newComment({
                 ticketNumber: ticket.ticketNumber,
                 keyValue: ukey,
