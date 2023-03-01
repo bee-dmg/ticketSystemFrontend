@@ -4,7 +4,7 @@ import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import uuid from "react-uuid";
 import TicketType from "../../../interfaces/TicketInterface";
-function AddComment(props:{setCommentView:Function, ticket:TicketType, newComment:Function}) {
+function AddComment(props:{setCommentView:Function, ticket:TicketType, newComment:Function, dashboard?:boolean}) {
     const setCommentView=props.setCommentView;
     const ticket=props.ticket;
     const ukey: string = uuid();
@@ -14,7 +14,7 @@ function AddComment(props:{setCommentView:Function, ticket:TicketType, newCommen
   return (
     <div>
 
-    <div onClick={()=>{setCommentView("")}}>Back to Comments</div>
+   {props.dashboard?<></>:<div onClick={()=>{setCommentView("")}}><Link to="">Back to Comments</Link></div>}
 
     <Form >
         <Form.Group className="mb-3" controlId="formTicket">

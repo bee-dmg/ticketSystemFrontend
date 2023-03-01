@@ -30,7 +30,7 @@ function Dashboard(props: {
 <SingleTicket updateStatus={updateStatus} tickets={tickets} setTickets={setTickets} currentTicket={currentTicket}/></div>
 
 <div className="addCommentDashboard">
-    {currentTicket?<AddComment ticket={currentTicket} setCommentView={()=>{}} newComment={(comment:any)=>{commentApiCall((()=>{}),"/","POST",comment);}}/>:<div>Please select a ticket to view comments.</div>}
+    {currentTicket?<AddComment ticket={currentTicket} setCommentView={()=>{}} newComment={(comment:any)=>{commentApiCall((()=>{}),"/","POST",comment);}} dashboard={true}/>:<div>Please select a ticket to view comments.</div>}
     </div></div>
   </div>
   )
