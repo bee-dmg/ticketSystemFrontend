@@ -33,13 +33,9 @@ function SingleTicket(props: {
   useEffect(() => {
     commentApiCall(setComments);
     apiCall(setTickets);
-    let x = 0;
-    if (ticket && x < 5) {
-      setStatus(ticket.status)
-    }
-    x++;
 
-  }, [ticket, setTickets]);
+
+  }, [setTickets]);
 
   let commentFiltered = comments.filter((element: CommentType) => element.ticketNumber === ticketId.ticketId);
 
@@ -60,8 +56,7 @@ function SingleTicket(props: {
     return (
       <>
         <div key={ticket.key}>
-          <Link to={`/edit/${ticket.ticketNumber}`}>Edit Ticket</Link>
-
+       
           <div className="row">
             <div>Project: {ticket.projectName}</div>
             <div>Ticket: {ticket.ticketNumber}</div>
@@ -78,6 +73,8 @@ function SingleTicket(props: {
                 props.updateStatus(ticket, status);
               }}
             >
+                 <Link to={`/edit/${ticket.ticketNumber}`}>Edit Ticket</Link>
+
               <StatusSelector
                 status={status}
                 setStatus={setStatus}
