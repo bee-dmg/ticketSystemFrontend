@@ -9,6 +9,7 @@ function StatusSelector(props: {
 }) {
   const status = props.status;
   const setStatus = props.setStatus;
+
   return (
     <>
       <div className="statusInput">

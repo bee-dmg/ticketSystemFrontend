@@ -25,22 +25,22 @@ function EditTicket(props: {
   useEffect(() => {
     apiCall(setTickets);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    ticket = tickets.find(
-      (element) => element.ticketNumber === ticketId.ticketId
-    );
-    if (ticket && statusA==="" ) {
+    // ticket = tickets.find(
+    //   (element) => element.ticketNumber === ticketId.ticketId
+    // );
+    // if (ticket && statusA==="" ) {
 
-      setStatusA(ticket.status);
-    }
+    //   setStatusA(ticket.status);
+    // }
 
 
-  }, [ticket])
+  }, [setTickets])
   if (ticket === undefined) {
     throw new TypeError("The value was promised to always be there!");
   }
   const [title, setTitle] = useState(ticket.title);
   const [description, setDescription] = useState(ticket.description);
-  const [statusA, setStatusA] = useState("");
+  const [statusA, setStatusA] = useState(ticket.status);
 
   if (ticket) {
     return (
