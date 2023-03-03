@@ -35,7 +35,7 @@ function SingleTicket(props: {
     apiCall(setTickets);
 
 
-  }, [setTickets]);
+  }, [currentTicket,setTickets]);
 
   let commentFiltered = comments.filter((element: CommentType) => element.ticketNumber === ticketId.ticketId);
 
