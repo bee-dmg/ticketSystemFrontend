@@ -37,11 +37,16 @@ function SingleTicket(props: {
   
   const [status, setStatus] = useState(Status.CLOSED);
 
+  
   useEffect(() => {
     commentApiCall(setComments);
     apiCall(setTickets);
-    if(ticket)
-setStatus(currentTicket.status);
+    if(ticket&&currentTicket){
+setStatus(currentTicket.status);}
+if(ticket&&!currentTicket){
+setStatus(ticket.status)
+}
+
 
 
 
