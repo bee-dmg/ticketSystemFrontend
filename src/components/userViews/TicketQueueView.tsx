@@ -43,8 +43,11 @@ function TicketQueueView(props: {
       </div>
       {tickets.map((ticket: TicketType) => (
        
-        <div className="row ticketQueueViewRow" key={ticket.key} onClick={()=>{console.log(ticket.ticketNumber); if(setCurrentTicket){setCurrentTicket(ticket);}}}>
-           
+        <div className={currentTicket && currentTicket.id === ticket.id ? 'test row ticketQueueViewRow': "row ticketQueueViewRow"} key={ticket.key} onClick={()=>{console.log(ticket.ticketNumber); if(setCurrentTicket){setCurrentTicket(ticket);}}}>
+            {/* <div 
+      className={currentTicket && currentTicket.id === ticket.id ? 'test': undefined} 
+      
+    > */}
           <div className="col-2">{ticket.projectName}</div>
           <div className="col-1">
             <Link to={`/view/${ticket.ticketNumber}`}>
@@ -57,8 +60,8 @@ function TicketQueueView(props: {
           <div className="col-4">{ticket.title}</div>
           <div className="col-1">{ticket.status.toLowerCase()}</div>
           <div className="col-1">{ticket.reporter}</div>
-          
-        </div>
+          </div>
+        // </div>
       ))}
       </div>
     </>
