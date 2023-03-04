@@ -43,7 +43,7 @@ function TicketQueueView(props: {
       </div>
       {tickets.map((ticket: TicketType) => (
        
-        <div className={currentTicket && currentTicket.id === ticket.id ? 'test row ticketQueueViewRow': "row ticketQueueViewRow"} key={ticket.key} onClick={()=>{console.log(ticket.ticketNumber); if(setCurrentTicket){setCurrentTicket(ticket);}}}>
+        <div className={currentTicket && currentTicket.id === ticket.id ? 'currentSelectedQueue row ticketQueueViewRow': "row ticketQueueViewRow"} key={ticket.key} onClick={()=>{console.log(ticket.ticketNumber); if(setCurrentTicket){setCurrentTicket(ticket);}}}>
             {/* <div 
       className={currentTicket && currentTicket.id === ticket.id ? 'test': undefined} 
       

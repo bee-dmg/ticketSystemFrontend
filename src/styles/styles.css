@@ -18,8 +18,13 @@
    
 }
 
-.test{
-    background-color:green;
+.currentSelectedQueue{
+    background-color:rgb(156, 156, 156);
+    color: white;
+}
+.currentSelectedQueue a{
+    background-color:rgb(156, 156, 156);
+    color: white;
 }
 
 .dashboardWhole{

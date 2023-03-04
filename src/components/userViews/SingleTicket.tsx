@@ -8,6 +8,7 @@ import apiCall from "../../apiCall/ticketApiCall";
 import commentApiCall from "../../apiCall/commentApiCall";
 import CommentType from "../../interfaces/CommentInterface";
 import CommentView from "./commentViews/CommentView";
+import Status from "../../interfaces/StatusEnum";
 function SingleTicket(props: {
   tickets: Array<TicketType>;
   updateStatus: Function;
@@ -27,12 +28,21 @@ function SingleTicket(props: {
   }
 }
 
+ 
+
   let ticket = tickets.find(
     (element) => element.ticketNumber === ticketId.ticketId
   );
+
+  
+  const [status, setStatus] = useState(Status.CLOSED);
+
   useEffect(() => {
     commentApiCall(setComments);
     apiCall(setTickets);
+    if(ticket)
+setStatus(currentTicket.status);
+
 
 
   }, [currentTicket,setTickets]);
@@ -44,14 +54,9 @@ function SingleTicket(props: {
 
 
 
-  let oldStatus = "";
-
-  if (ticket) { oldStatus = ticket.status };
-
-
-  const [status, setStatus] = useState(oldStatus);
 
   if (ticket) {
+    
     const date = new Date(ticket.date);
     return (
       <>
