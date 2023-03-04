@@ -11,6 +11,7 @@ function AddTicket(props: { newTicket: Function; tickets: Array<TicketType> }) {
   const [description, setDescription] = useState("");
   const [reporter, setReporter] = useState("");
   const [projectName, setProjectName] = useState("");
+  const [submitTimeout, setSubmitTimeout] = useState(false);
   const ukey: string = uuid();
   const tickets = props.tickets;
   let prevTicketNum;
@@ -77,7 +78,10 @@ return (
         <Link to="/">
           {" "}
           <Button type="submit"
+          disabled={submitTimeout}
             onClick={() => {
+              setSubmitTimeout(true);
+              setTimeout(()=>{setSubmitTimeout(false)},5000)
               props.newTicket({
                 ticketNumber: ticketNumber,
                 key: ukey,

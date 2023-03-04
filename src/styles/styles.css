@@ -19,12 +19,11 @@
 }
 
 .currentSelectedQueue{
-    background-color:rgb(156, 156, 156);
-    color: white;
+    background-color:rgb(234, 230, 255);
+    color: black;
 }
 .currentSelectedQueue a{
-    background-color:rgb(156, 156, 156);
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 .dashboardWhole{
