@@ -7,6 +7,7 @@ import "../../styles/styles.css";
 import SingleTicket from './SingleTicket';
 import AddComment from './commentViews/AddComment';
 import commentApiCall from '../../apiCall/commentApiCall';
+import { current } from '@reduxjs/toolkit';
 
 function Dashboard(props: {
     tickets: Array<TicketType>;
@@ -22,7 +23,7 @@ function Dashboard(props: {
 
   return (
     <div>
-<TicketQueueView tickets={tickets} setTickets={setTickets} setCurrentTicket={setCurrentTicket}/>
+<TicketQueueView tickets={tickets} setTickets={setTickets} setCurrentTicket={setCurrentTicket} currentTicket={currentTicket}/>
 <div className="dashboardWhole">
 <div className="addTicketDashboard">
 <AddTicket tickets ={tickets} newTicket={newTicket}/></div>

@@ -9,11 +9,13 @@ function TicketQueueView(props: {
   tickets: Array<TicketType>;
   setTickets: Function;
   setCurrentTicket?:Function;
+  currentTicket?:TicketType;
 }) {
   const tickets = props.tickets;
   const setTickets = props.setTickets;
   const [sortPref, setSortPref] = useState("dateUp");
   const setCurrentTicket=props.setCurrentTicket;
+  const currentTicket = props.currentTicket;
   let date = tickets.sort((a: TicketType, b: TicketType) =>
     a.date > b.date ? 1 : -1
   );
@@ -40,7 +42,9 @@ function TicketQueueView(props: {
         <div className="col-1">Reporter</div>
       </div>
       {tickets.map((ticket: TicketType) => (
+       
         <div className="row ticketQueueViewRow" key={ticket.key} onClick={()=>{console.log(ticket.ticketNumber); if(setCurrentTicket){setCurrentTicket(ticket);}}}>
+           
           <div className="col-2">{ticket.projectName}</div>
           <div className="col-1">
             <Link to={`/view/${ticket.ticketNumber}`}>
