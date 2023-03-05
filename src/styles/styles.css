@@ -20,6 +20,10 @@
 
 .currentSelectedQueue{
     background-color:rgb(234, 230, 255);
+    border-radius:10px;
+    padding:5px;
+    padding-left:0px;
+    margin-left:0px;
     color: black;
 }
 .currentSelectedQueue a{

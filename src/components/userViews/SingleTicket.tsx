@@ -39,6 +39,7 @@ function SingleTicket(props: {
 
   
   useEffect(() => {
+   
     commentApiCall(setComments);
     apiCall(setTickets);
     if(ticket&&currentTicket){
@@ -46,6 +47,11 @@ setStatus(currentTicket.status);}
 if(ticket&&!currentTicket){
 setStatus(ticket.status)
 }
+
+const interval = setInterval(() => {
+  commentApiCall(setComments);
+}, 5000);
+return () => clearInterval(interval);
 
 
 

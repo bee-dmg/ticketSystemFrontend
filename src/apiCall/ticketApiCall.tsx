@@ -24,6 +24,7 @@ if(url==="/"){
           console.error("Error:", error);
         });
 } if (url&&url!=="/") {
+  console.log(apiEndPoint +"/"+ url)
     fetch(apiEndPoint +"/"+ url, {
       method: methodType, // or 'PUT'
       headers: {

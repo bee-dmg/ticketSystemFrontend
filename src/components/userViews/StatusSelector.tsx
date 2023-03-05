@@ -14,7 +14,7 @@ function StatusSelector(props: {
     <>
       <div className="statusInput">
         <Form.Select
-          aria-label="Default select example"
+          aria-label="status selector"
           className="statusInput"
           value={status}
           onChange={(e: any) => {
