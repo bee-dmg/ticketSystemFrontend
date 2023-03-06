@@ -63,7 +63,7 @@ function CommentView(props: {
        <div>
         <CommentNavBar setCommentView={setCommentView}/>
         <Sort setSortPref={setSortPref} />
-        <div>{comments.map((comment: CommentType) => (<SingleComment key={comment.id} comment={comment} setCommentView={setCommentView} deleteComment={deleteComment} setSingleComment={setSingleComment}/>))}
+        <div className="commentContainer">{comments.map((comment: CommentType) => (<SingleComment key={comment.id} comment={comment} setCommentView={setCommentView} deleteComment={deleteComment} setSingleComment={setSingleComment}/>))}
         </div>
     </div>
 

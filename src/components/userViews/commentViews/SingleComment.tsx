@@ -1,6 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import CommentType from '../../../interfaces/CommentInterface';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Button } from 'react-bootstrap';
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
+
 
 function SingleComment(props: {
   comment: CommentType;
@@ -13,22 +17,19 @@ function SingleComment(props: {
   const setCommentView = props.setCommentView;
   const setSingleComment = props.setSingleComment;
   return (
-    <div>
-      <div>User: {comment.user}</div>
-      <div>
-        Time Posted: {new Date(comment.date).toLocaleTimeString()}{' '}
-        {new Date(comment.date).toDateString()}
-      </div>
-      <div>{comment.title}</div>
+    <div className="userComment">
+      <div className="userCommentHeader">{new Date(comment.date).toLocaleTimeString()}{' '}
+        {new Date(comment.date).toDateString()} by {comment.user}</div>
+     
+      <div className="userCommentTitle">{comment.title}</div>
       <div>{comment.comment}</div>
-      <div
-        onClick={() => {
+      <div className="deleteComment" onClick={() => {
           deleteComment(comment);
         }}
       >
-        del
+        <Button><FontAwesomeIcon icon={faTrash} /></Button>
       </div>
-      <div
+      <div className="editComment"
         onClick={() => {
           setSingleComment(comment);
           setCommentView('edit');
