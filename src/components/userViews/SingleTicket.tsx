@@ -89,6 +89,7 @@ setStatus(ticket.status)
                 status={status}
                 setStatus={setStatus}
                 updateStatus={updateStatus}
+                ticket={ticket}
               />
             </div>
             <div className="col-3">
