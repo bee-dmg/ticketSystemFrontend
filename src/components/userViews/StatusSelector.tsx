@@ -1,14 +1,17 @@
-import React from "react";
+import React,{useEffect} from "react";
 import Status from "../../interfaces/StatusEnum";
 import "../../styles/styles.css";
+import TicketType from "../../interfaces/TicketInterface";
 import { Form } from "react-bootstrap";
 function StatusSelector(props: {
   status: any;
   setStatus: any;
   updateStatus: Function;
+  ticket:TicketType;
 }) {
   const status = props.status;
   const setStatus = props.setStatus;
+  const ticket = props.ticket;
 
   return (
     <>
@@ -18,6 +21,7 @@ function StatusSelector(props: {
           className="statusInput"
           value={status}
           onChange={(e: any) => {
+            props.updateStatus(ticket, status);
             setStatus(e.target.value);
           }}
         >

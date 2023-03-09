@@ -71,6 +71,7 @@ function EditTicket(props: {
               status={statusA}
               setStatus={setStatusA}
               updateStatus={updateStatus}
+              ticket={ticket}
             />
           </Form.Group>
           <Link to={`/view/${ticket.ticketNumber}`}>
