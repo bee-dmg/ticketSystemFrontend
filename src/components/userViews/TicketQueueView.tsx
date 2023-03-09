@@ -16,17 +16,12 @@ function TicketQueueView(props: {
   const [sortPref, setSortPref] = useState("dateUp");
   const setCurrentTicket=props.setCurrentTicket;
   const currentTicket = props.currentTicket;
-  let date = tickets.sort((a: TicketType, b: TicketType) =>
+   tickets.sort((a: TicketType, b: TicketType) =>
     a.date > b.date ? 1 : -1
   );
-  useEffect(() => {
-    apiCall(setTickets);
-  }, []);
-  // useEffect(() => {
-  //   apiCall(setTickets);
-  // }, [tickets]);
+ 
   if (sortPref === "dateDown") {
-    date = tickets.sort((a: TicketType, b: TicketType) =>
+   tickets.sort((a: TicketType, b: TicketType) =>
       a.date > b.date ? -1 : 1
     );
   }

@@ -20,12 +20,10 @@ function CommentView(props: {
     const [sortPref, setSortPref] = useState("dateUp");
     const [commentView, setCommentView]=useState("");
     const [singleComment, setSingleComment]=useState();
-    let date = comments.sort((a: CommentType, b: CommentType) =>
+    comments.sort((a: CommentType, b: CommentType) =>
         a.date > b.date ? 1 : -1
     );
-    // useEffect(() => {
-    //     commentApiCall(setComments);
-    // }, [setComments]);
+   
 
     function newComment (comment:CommentType){
         commentApiCall(setComments,"/","POST",comment);
@@ -37,13 +35,8 @@ function CommentView(props: {
         commentApiCall(setComments,comment.keyValue,"PUT",comment);
     }
    
-
-   
-    // useEffect(() => {
-    //   apiCall(setTickets);
-    // }, [tickets]);
     if (sortPref === "dateDown") {
-        date = comments.sort((a: CommentType, b: CommentType) =>
+       comments.sort((a: CommentType, b: CommentType) =>
             a.date > b.date ? -1 : 1
         );
     }

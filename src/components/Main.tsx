@@ -9,10 +9,10 @@ function Main() {
   const [tickets, setTickets] = useState([]);
   useEffect(() => {
     apiCall(setTickets);
-    const interval = setInterval(() => {
-      apiCall(setTickets);
-    }, 10000);
-    return () => clearInterval(interval);
+    // const interval = setInterval(() => {
+    //   apiCall(setTickets);
+    // }, 2000);
+    // return () => clearInterval(interval);
   }, []);
 
   function deleteTicket(ticket: TicketType) {

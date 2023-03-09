@@ -21,18 +21,23 @@ function SingleTicket(props: {
   const updateStatus = props.updateStatus;
   const currentTicket=props.currentTicket;
   let ticketId: any = useParams();
+  let ticket:TicketType | undefined;
   if(!ticketId.ticketId){
   if(currentTicket){
     ticketId.ticketId=currentTicket.ticketNumber;
-
   }
 }
 
  
 
-  let ticket = tickets.find(
+ 
+  if(!currentTicket){
+  ticket = tickets.find(
     (element) => element.ticketNumber === ticketId.ticketId
-  );
+  );}
+  else{
+    ticket=currentTicket;
+  }
 
   
   const [status, setStatus] = useState(Status.CLOSED);
@@ -40,7 +45,7 @@ function SingleTicket(props: {
   
   useEffect(() => {
     commentApiCall(setComments);
-    apiCall(setTickets);
+    // apiCall(setTickets);
     if(ticket&&currentTicket){
 setStatus(currentTicket.status);}
 if(ticket&&!currentTicket){
@@ -50,7 +55,7 @@ setStatus(ticket.status)
 
 
 
-  }, [currentTicket,setTickets]);
+  }, [currentTicket,setTickets,ticket]);
 
   let commentFiltered = comments.filter((element: CommentType) => element.ticketNumber === ticketId.ticketId);
 
