@@ -11,11 +11,10 @@ function TicketQueueView(props: {
   setCurrentTicket?:Function;
   currentTicket?:TicketType;
 }) {
-  const tickets = props.tickets;
-  const setTickets = props.setTickets;
+
+  const {tickets,setTickets,setCurrentTicket,currentTicket}=props;
   const [sortPref, setSortPref] = useState("dateUp");
-  const setCurrentTicket=props.setCurrentTicket;
-  const currentTicket = props.currentTicket;
+
    tickets.sort((a: TicketType, b: TicketType) =>
     a.date > b.date ? 1 : -1
   );

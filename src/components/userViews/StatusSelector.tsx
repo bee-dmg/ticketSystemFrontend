@@ -9,10 +9,9 @@ function StatusSelector(props: {
   updateStatus: Function;
   ticket:TicketType;
 }) {
-  const status = props.status;
-  const setStatus = props.setStatus;
-  const ticket = props.ticket;
-  const updateStatus = props.updateStatus;
+
+  const {status, setStatus, ticket, updateStatus}=props;
+
 
 
   useEffect(()=>{
@@ -29,7 +28,7 @@ function StatusSelector(props: {
           value={status}
           onChange={(e: any) => {
             setStatus(e.target.value);
-            
+            updateStatus(ticket, e.target.value);
           }}
         >
           <option value={Status.OPEN}>Open</option>
