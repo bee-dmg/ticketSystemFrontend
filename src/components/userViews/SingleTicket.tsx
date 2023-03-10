@@ -16,6 +16,8 @@ function SingleTicket(props: {
   currentTicket?:any;
   commentAdded?:boolean;
   setCommentAdded?:Function;
+  status?:Status;
+  setStatus?:Function;
 }) {
   const [comments, setComments] = useState<any>([]);
   const tickets = props.tickets;
@@ -24,6 +26,8 @@ function SingleTicket(props: {
   const currentTicket=props.currentTicket;
   const setCommentAdded=props.setCommentAdded;
   const commentAdded =props.commentAdded;
+  const status = props.status;
+  const setStatus = props.status;
   let ticketId: any = useParams();
   let ticket:TicketType | undefined;
   if(!ticketId.ticketId){
@@ -45,8 +49,7 @@ function SingleTicket(props: {
   }
 
   
-  const [status, setStatus] = useState(Status.CLOSED);
-
+ 
   let commentFiltered = comments.filter((element: CommentType) => element.ticketNumber === ticketId.ticketId);
 
 
@@ -58,8 +61,9 @@ function SingleTicket(props: {
 // if(ticket&&!currentTicket){
 // setStatus(ticket.status)
 // }
+// if(currentTicket)
+// setStatus(currentTicket.status);
 
-console.log(commentAdded);
 
   }, [currentTicket,commentAdded]);
 
@@ -70,7 +74,7 @@ console.log(commentAdded);
 
 
   if (ticket) {
-    
+    console.log(currentTicket);
     const date = new Date(ticket.date);
     return (
       <>
@@ -88,9 +92,9 @@ console.log(commentAdded);
             <div className="col-12">Title:{ticket.title}</div>
             <div
               className="col-3"
-              onMouseOut={() => {
-                props.updateStatus(ticket, status);
-              }}
+              // onMouseOut={() => {
+              //   props.updateStatus(ticket, status);
+              // }}
             >
                  <Link to={`/edit/${ticket.ticketNumber}`}>Edit Ticket</Link>
 

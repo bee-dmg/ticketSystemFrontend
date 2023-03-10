@@ -21,8 +21,10 @@ function StatusSelector(props: {
           className="statusInput"
           value={status}
           onChange={(e: any) => {
-            props.updateStatus(ticket, status);
             setStatus(e.target.value);
+            setTimeout(()=>{props.updateStatus(ticket, status);},1000);
+           
+             console.log(status);
           }}
         >
           <option value={Status.OPEN}>Open</option>
