@@ -46,7 +46,7 @@ export default function UserViewRouter(props: {
         <Route
           path="/"
           element={
-            <Dashboard currentTicket={currentTicket} setCurrentTicket={setCurrentTicket} updateStatus={updateStatus} tickets={tickets} setTickets={setTickets} newTicket={newTicket} ticketAdded={ticketAdded} setTicketAdded={setTicketAdded} status={status} setStatus={setStatus} />
+            <Dashboard currentTicket={currentTicket} setCurrentTicket={setCurrentTicket} updateStatus={updateStatus} tickets={tickets} setTickets={setTickets} newTicket={newTicket} ticketAdded={ticketAdded} setTicketAdded={setTicketAdded} />
           }
         />
 

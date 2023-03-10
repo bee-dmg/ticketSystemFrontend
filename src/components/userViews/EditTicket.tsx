@@ -68,8 +68,7 @@ function EditTicket(props: {
             />
 
             <StatusSelector
-              status={statusA}
-              setStatus={setStatusA}
+        
               updateStatus={updateStatus}
               ticket={ticket}
             />

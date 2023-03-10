@@ -16,8 +16,7 @@ function SingleTicket(props: {
   currentTicket?:any;
   commentAdded?:boolean;
   setCommentAdded?:Function;
-  status?:Status;
-  setStatus?:Function;
+
 }) {
   const [comments, setComments] = useState<any>([]);
   const tickets = props.tickets;
@@ -26,8 +25,7 @@ function SingleTicket(props: {
   const currentTicket=props.currentTicket;
   const setCommentAdded=props.setCommentAdded;
   const commentAdded =props.commentAdded;
-  const status = props.status;
-  const setStatus = props.setStatus;
+
   let ticketId: any = useParams();
   let ticket:TicketType | undefined;
   if(!ticketId.ticketId){
@@ -65,7 +63,7 @@ function SingleTicket(props: {
 // setStatus(currentTicket.status);
 
 
-  }, [currentTicket,commentAdded, status]);
+  }, [currentTicket,commentAdded]);
 
  
 
@@ -99,8 +97,7 @@ function SingleTicket(props: {
                  <Link to={`/edit/${ticket.ticketNumber}`}>Edit Ticket</Link>
 
               <StatusSelector
-                status={status}
-                setStatus={setStatus}
+             
                 updateStatus={updateStatus}
                 ticket={ticket}
               />

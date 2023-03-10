@@ -1,18 +1,17 @@
-import React,{useEffect} from "react";
+import React,{useEffect, useState} from "react";
 import Status from "../../interfaces/StatusEnum";
 import "../../styles/styles.css";
 import TicketType from "../../interfaces/TicketInterface";
 import { Form } from "react-bootstrap";
 function StatusSelector(props: {
-  status: any;
-  setStatus: any;
+ 
   updateStatus: Function;
   ticket:TicketType;
 }) {
 
-  const {status, setStatus, ticket, updateStatus}=props;
+  const { ticket, updateStatus}=props;
 
-
+  const [status,setStatus]=useState<Status>(ticket.status);
 
   useEffect(()=>{
 
