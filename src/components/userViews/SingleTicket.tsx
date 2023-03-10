@@ -62,7 +62,7 @@ function SingleTicket(props: {
 // setStatus(currentTicket.status);
 
 
-  }, [currentTicket,commentAdded]);
+  }, [currentTicket,commentAdded, status]);
 
  
 
