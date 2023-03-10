@@ -15,12 +15,16 @@ export default function UserViewRouter(props: {
   deleteTicket: Function;
   updateStatus: Function;
   setTickets: Function;
+  currentTicket:any;
+  setCurrentTicket:Function;
 }) {
   const tickets = props.tickets;
   const setTickets = props.setTickets;
   const deleteTicket = props.deleteTicket;
   const updateStatus = props.updateStatus;
   const newTicket = props.newTicket;
+  const currentTicket=props.currentTicket;
+  const setCurrentTicket=props.setCurrentTicket;
   return (
     <div>
       <Routes>
@@ -32,7 +36,7 @@ export default function UserViewRouter(props: {
         <Route
           path="/"
           element={
-            <Dashboard updateStatus={updateStatus} tickets={tickets} setTickets={setTickets} newTicket={newTicket} />
+            <Dashboard currentTicket={currentTicket} setCurrentTicket={setCurrentTicket} updateStatus={updateStatus} tickets={tickets} setTickets={setTickets} newTicket={newTicket} />
           }
         />
 

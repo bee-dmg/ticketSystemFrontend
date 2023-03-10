@@ -25,6 +25,7 @@ function SingleTicket(props: {
   if(!ticketId.ticketId){
   if(currentTicket){
     ticketId.ticketId=currentTicket.ticketNumber;
+
   }
 }
 
@@ -46,16 +47,16 @@ function SingleTicket(props: {
   useEffect(() => {
     commentApiCall(setComments);
     // apiCall(setTickets);
-    if(ticket&&currentTicket){
-setStatus(currentTicket.status);}
-if(ticket&&!currentTicket){
-setStatus(ticket.status)
-}
+//     if(ticket&&currentTicket){
+// setStatus(currentTicket.status);}
+// if(ticket&&!currentTicket){
+// setStatus(ticket.status)
+// }
 
 
 
 
-  }, [currentTicket,setTickets,ticket]);
+  }, [currentTicket]);
 
   let commentFiltered = comments.filter((element: CommentType) => element.ticketNumber === ticketId.ticketId);
 

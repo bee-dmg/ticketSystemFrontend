@@ -15,15 +15,17 @@ function Dashboard(props: {
     setTickets: Function;
     newTicket:Function;
     updateStatus:Function;
+    currentTicket:TicketType;
+    setCurrentTicket:Function;
 
   }){
    const tickets = props.tickets;
    const setTickets = props.setTickets;
    const newTicket = props.newTicket;
    const updateStatus = props.updateStatus;
+  const currentTicket=props.currentTicket;
+  const setCurrentTicket=props.setCurrentTicket;
   
-   const[currentTicket,setCurrentTicket]=useState();
-
   return (
     <div>
 <TicketQueueView tickets={tickets} setTickets={setTickets} setCurrentTicket={setCurrentTicket} currentTicket={currentTicket}/>

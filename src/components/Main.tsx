@@ -7,8 +7,10 @@ import apiCall from "../apiCall/ticketApiCall";
 import { Container } from "react-bootstrap";
 function Main() {
   const [tickets, setTickets] = useState([]);
+  const [currentTicket, setCurrentTicket]=useState<TicketType>();
   useEffect(() => {
     apiCall(setTickets);
+    
     // const interval = setInterval(() => {
     //   apiCall(setTickets);
     // }, 2000);
@@ -36,6 +38,8 @@ function Main() {
         <NavBar />
         <Container>
           <UserViewRouter
+          currentTicket={currentTicket}
+          setCurrentTicket={setCurrentTicket}
             tickets={tickets}
             newTicket={newTicket}
             editTicket={editTicket}
