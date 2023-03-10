@@ -11,11 +11,15 @@ function SingleComment(props: {
   deleteComment: Function;
   setCommentView: Function;
   setSingleComment: Function;
+  commentAdded?:boolean;
+  setCommentAdded?:Function;
 }) {
   const comment = props.comment;
   const deleteComment = props.deleteComment;
   const setCommentView = props.setCommentView;
   const setSingleComment = props.setSingleComment;
+  const commentAdded = props.commentAdded;
+  const setCommentAdded =props.setCommentAdded;
   return (
     <div className="userComment">
       <div className="userCommentHeader">{new Date(comment.date).toLocaleTimeString()}{' '}
@@ -24,6 +28,7 @@ function SingleComment(props: {
       <div className="userCommentTitle">{comment.title}</div>
       <div>{comment.comment}</div>
       <div className="deleteComment" onClick={() => {
+        if(commentAdded!==undefined&&setCommentAdded!==undefined){console.log(commentAdded);setCommentAdded(!commentAdded);}
           deleteComment(comment);
         }}
       >

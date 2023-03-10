@@ -14,12 +14,16 @@ function SingleTicket(props: {
   updateStatus: Function;
   setTickets: Function;
   currentTicket?:any;
+  commentAdded?:boolean;
+  setCommentAdded?:Function;
 }) {
   const [comments, setComments] = useState<any>([]);
   const tickets = props.tickets;
   const setTickets = props.setTickets;
   const updateStatus = props.updateStatus;
   const currentTicket=props.currentTicket;
+  const setCommentAdded=props.setCommentAdded;
+  const commentAdded =props.commentAdded;
   let ticketId: any = useParams();
   let ticket:TicketType | undefined;
   if(!ticketId.ticketId){
@@ -43,7 +47,9 @@ function SingleTicket(props: {
   
   const [status, setStatus] = useState(Status.CLOSED);
 
-  
+  let commentFiltered = comments.filter((element: CommentType) => element.ticketNumber === ticketId.ticketId);
+
+
   useEffect(() => {
     commentApiCall(setComments);
     // apiCall(setTickets);
@@ -53,14 +59,11 @@ function SingleTicket(props: {
 // setStatus(ticket.status)
 // }
 
+console.log(commentAdded);
 
+  }, [currentTicket,commentAdded]);
 
-
-  }, [currentTicket]);
-
-  let commentFiltered = comments.filter((element: CommentType) => element.ticketNumber === ticketId.ticketId);
-
-
+ 
 
 
 
@@ -103,7 +106,7 @@ function SingleTicket(props: {
               <div className="col-3">Reporter:{ticket.reporter}</div>
             </div>
             <div>Description:{ticket.description}</div>
-              <CommentView ticket={ticket} comments={commentFiltered} setComments={setComments} />
+              <CommentView ticket={ticket} comments={commentFiltered} setComments={setComments} setCommentAdded={setCommentAdded} commentAdded={commentAdded} />
           
           </div>
         </div>

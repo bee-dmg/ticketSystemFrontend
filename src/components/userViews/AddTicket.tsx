@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import TicketType from "../../interfaces/TicketInterface";
 import uuid from "react-uuid";
 
-function AddTicket(props: { newTicket: Function; tickets: Array<TicketType> }) {
+function AddTicket(props: { newTicket: Function; tickets: Array<TicketType>; ticketAdded?:boolean; setTicketAdded?:Function; }) {
   const [title, setTitle] = useState("");
   const [email, setEmail] = useState("");
   const [description, setDescription] = useState("");
@@ -13,6 +13,8 @@ function AddTicket(props: { newTicket: Function; tickets: Array<TicketType> }) {
   const [projectName, setProjectName] = useState("");
   const [submitTimeout, setSubmitTimeout] = useState(false);
   const ukey: string = uuid();
+  const ticketAdded = props.ticketAdded;
+  const setTicketAdded=props.setTicketAdded;
   const tickets = props.tickets;
   let prevTicketNum;
   if(tickets.length>0){
@@ -81,7 +83,9 @@ return (
           disabled={submitTimeout}
             onClick={() => {
               setSubmitTimeout(true);
-              setTimeout(()=>{setSubmitTimeout(false)},5000)
+              setTimeout(()=>{
+                  if(setTicketAdded!==undefined&& ticketAdded!==undefined){setTicketAdded(!ticketAdded);}
+                setSubmitTimeout(false)},5000)
               props.newTicket({
                 ticketNumber: ticketNumber,
                 key: ukey,

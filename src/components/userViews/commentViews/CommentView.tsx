@@ -14,12 +14,16 @@ function CommentView(props: {
     comments: Array<CommentType>;
     setComments: Function;
     ticket: TicketType;
+    commentAdded?:boolean;
+    setCommentAdded?:Function;
 }) {
     const comments = props.comments;
     const setComments = props.setComments;
     const [sortPref, setSortPref] = useState("dateUp");
     const [commentView, setCommentView]=useState("");
     const [singleComment, setSingleComment]=useState();
+    const commentAdded=props.commentAdded;
+    const setCommentAdded=props.setCommentAdded;
     comments.sort((a: CommentType, b: CommentType) =>
         a.date > b.date ? 1 : -1
     );
@@ -56,7 +60,7 @@ function CommentView(props: {
        <div>
         <CommentNavBar setCommentView={setCommentView}/>
         <Sort setSortPref={setSortPref} />
-        <div className="commentContainer">{comments.map((comment: CommentType) => (<SingleComment key={comment.id} comment={comment} setCommentView={setCommentView} deleteComment={deleteComment} setSingleComment={setSingleComment}/>))}
+        <div className="commentContainer">{comments.map((comment: CommentType) => (<SingleComment key={comment.id} comment={comment} setCommentView={setCommentView} deleteComment={deleteComment} setSingleComment={setSingleComment} commentAdded={commentAdded} setCommentAdded={setCommentAdded}/>))}
         </div>
     </div>
 

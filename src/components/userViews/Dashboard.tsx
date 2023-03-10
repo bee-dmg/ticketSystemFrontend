@@ -17,6 +17,8 @@ function Dashboard(props: {
     updateStatus:Function;
     currentTicket:TicketType;
     setCurrentTicket:Function;
+    ticketAdded:boolean;
+    setTicketAdded:Function;
 
   }){
    const tickets = props.tickets;
@@ -25,18 +27,20 @@ function Dashboard(props: {
    const updateStatus = props.updateStatus;
   const currentTicket=props.currentTicket;
   const setCurrentTicket=props.setCurrentTicket;
-  
+  const [commentAdded,setCommentAdded]=useState(false);
+ const ticketAdded=props.ticketAdded;
+ const setTicketAdded=props.setTicketAdded;
   return (
     <div>
 <TicketQueueView tickets={tickets} setTickets={setTickets} setCurrentTicket={setCurrentTicket} currentTicket={currentTicket}/>
 <div className="dashboardWhole">
 <div className="addTicketDashboard">
-<AddTicket tickets ={tickets} newTicket={newTicket}/></div>
+<AddTicket tickets ={tickets} newTicket={newTicket} ticketAdded={ticketAdded} setTicketAdded={setTicketAdded}/></div>
 <div className="singleTicketDashboard">
-<SingleTicket updateStatus={updateStatus} tickets={tickets} setTickets={setTickets} currentTicket={currentTicket} /></div>
+<SingleTicket updateStatus={updateStatus} tickets={tickets} setTickets={setTickets} currentTicket={currentTicket} commentAdded={commentAdded} setCommentAdded={setCommentAdded}/></div>
 
 <div className="addCommentDashboard">
-    {currentTicket?<AddComment ticket={currentTicket} setCommentView={()=>{}} newComment={(comment:any)=>{commentApiCall((()=>{}),"/","POST",comment);}} dashboard={true}/>:<div>Please select a ticket to view comments.</div>}
+    {currentTicket?<AddComment ticket={currentTicket} setCommentView={()=>{}} newComment={(comment:any)=>{commentApiCall((()=>{}),"/","POST",comment);}} dashboard={true} setCommentAdded={setCommentAdded} commentAdded={commentAdded}/>:<div>Please select a ticket to view comments.</div>}
     </div></div>
   </div>
   )

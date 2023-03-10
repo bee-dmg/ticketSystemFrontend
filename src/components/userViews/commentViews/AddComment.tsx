@@ -4,13 +4,15 @@ import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import uuid from "react-uuid";
 import TicketType from "../../../interfaces/TicketInterface";
-function AddComment(props:{setCommentView:Function, ticket:TicketType, newComment:Function, dashboard?:boolean}) {
+function AddComment(props:{setCommentView:Function, ticket:TicketType, newComment:Function, dashboard?:boolean,setCommentAdded?:Function, commentAdded?:boolean}) {
     const setCommentView=props.setCommentView;
     const ticket=props.ticket;
     const ukey: string = uuid();
     const [ user, setUser]=useState("");
     const [title, setTitle]=useState("");
     const [ comment, setComment]=useState("");
+    const setCommentAdded=props.setCommentAdded;
+    const commentAdded=props.commentAdded;
   return (
     <div>
 
@@ -51,7 +53,8 @@ function AddComment(props:{setCommentView:Function, ticket:TicketType, newCommen
        
           {" "}
           <Button type="submit"
-            onClick={(e) => {setCommentView("");
+            onClick={(e) => {if(setCommentAdded!==undefined &&commentAdded!==undefined){setCommentAdded(!commentAdded);}
+              setCommentView("");
             e.preventDefault();
               props.newComment({
                 ticketNumber: ticket.ticketNumber,

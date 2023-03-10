@@ -8,6 +8,7 @@ import { Container } from "react-bootstrap";
 function Main() {
   const [tickets, setTickets] = useState([]);
   const [currentTicket, setCurrentTicket]=useState<TicketType>();
+  const [ticketAdded,setTicketAdded]=useState(false);
   useEffect(() => {
     apiCall(setTickets);
     
@@ -15,7 +16,7 @@ function Main() {
     //   apiCall(setTickets);
     // }, 2000);
     // return () => clearInterval(interval);
-  }, []);
+  }, [ticketAdded]);
 
   function deleteTicket(ticket: TicketType) {
     apiCall(setTickets, ticket.id.toString(), "DELETE", ticket);
@@ -46,6 +47,8 @@ function Main() {
             deleteTicket={deleteTicket}
             updateStatus={updateStatus}
             setTickets={setTickets}
+            ticketAdded={ticketAdded}
+            setTicketAdded={setTicketAdded}
           />
         </Container>
       </div>
