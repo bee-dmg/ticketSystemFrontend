@@ -12,7 +12,14 @@ function StatusSelector(props: {
   const status = props.status;
   const setStatus = props.setStatus;
   const ticket = props.ticket;
+  const updateStatus = props.updateStatus;
 
+
+  useEffect(()=>{
+
+    updateStatus(ticket, status);
+   
+  },[status,ticket])
   return (
     <>
       <div className="statusInput">
@@ -22,9 +29,7 @@ function StatusSelector(props: {
           value={status}
           onChange={(e: any) => {
             setStatus(e.target.value);
-            setTimeout(()=>{props.updateStatus(ticket, status);},1000);
-           
-             console.log(status);
+            
           }}
         >
           <option value={Status.OPEN}>Open</option>

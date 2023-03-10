@@ -1,10 +1,10 @@
-import React from "react";
+import React,{useEffect} from "react";
 import AddTicket from "./userViews/AddTicket";
 import TicketQueueView from "./userViews/TicketQueueView";
 import EditTicket from "./userViews/EditTicket";
 import TicketType from "../interfaces/TicketInterface";
 import Dashboard from "./userViews/Dashboard";
-
+import Status from "../interfaces/StatusEnum";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SingleTicket from "./userViews/SingleTicket";
 
@@ -19,6 +19,8 @@ export default function UserViewRouter(props: {
   setCurrentTicket:Function;
   ticketAdded:boolean;
   setTicketAdded:Function;
+  status?:Status;
+  setStatus?:Function;
 }) {
   const tickets = props.tickets;
   const setTickets = props.setTickets;
@@ -29,6 +31,10 @@ export default function UserViewRouter(props: {
   const setCurrentTicket=props.setCurrentTicket;
   const ticketAdded=props.ticketAdded;
   const setTicketAdded=props.setTicketAdded;
+  const status = props.status;
+  const setStatus = props.setStatus;
+
+  useEffect(()=>{},[status])
   return (
     <div>
       <Routes>
@@ -40,7 +46,7 @@ export default function UserViewRouter(props: {
         <Route
           path="/"
           element={
-            <Dashboard currentTicket={currentTicket} setCurrentTicket={setCurrentTicket} updateStatus={updateStatus} tickets={tickets} setTickets={setTickets} newTicket={newTicket} ticketAdded={ticketAdded} setTicketAdded={setTicketAdded} />
+            <Dashboard currentTicket={currentTicket} setCurrentTicket={setCurrentTicket} updateStatus={updateStatus} tickets={tickets} setTickets={setTickets} newTicket={newTicket} ticketAdded={ticketAdded} setTicketAdded={setTicketAdded} status={status} setStatus={setStatus} />
           }
         />
 

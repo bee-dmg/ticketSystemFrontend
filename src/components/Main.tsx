@@ -9,14 +9,16 @@ function Main() {
   const [tickets, setTickets] = useState([]);
   const [currentTicket, setCurrentTicket]=useState<TicketType>();
   const [ticketAdded,setTicketAdded]=useState(false);
+  const [status,setStatus]=useState<Status>();
   useEffect(() => {
     apiCall(setTickets);
-    
+    if(currentTicket)
+    setStatus(currentTicket.status)
     // const interval = setInterval(() => {
     //   apiCall(setTickets);
     // }, 2000);
     // return () => clearInterval(interval);
-  }, [ticketAdded]);
+  }, [ticketAdded, currentTicket]);
 
   function deleteTicket(ticket: TicketType) {
     apiCall(setTickets, ticket.id.toString(), "DELETE", ticket);
@@ -49,6 +51,8 @@ function Main() {
             setTickets={setTickets}
             ticketAdded={ticketAdded}
             setTicketAdded={setTicketAdded}
+            status={status}
+            setStatus={setStatus}
           />
         </Container>
       </div>
