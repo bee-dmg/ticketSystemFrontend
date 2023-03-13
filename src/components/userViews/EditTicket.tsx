@@ -5,6 +5,7 @@ import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import TicketType from "../../interfaces/TicketInterface";
 import StatusSelector from "./StatusSelector";
+import Status from "../../interfaces/StatusEnum";
 
 import apiCall from "../../apiCall/ticketApiCall";
 
@@ -67,11 +68,22 @@ function EditTicket(props: {
               }}
             />
 
-            <StatusSelector
-        
-              updateStatus={updateStatus}
-              ticket={ticket}
-            />
+<div className="statusInput">
+        <Form.Select
+          aria-label="status selector"
+          className="statusInput"
+          value={statusA}
+          onChange={(e: any) => {
+            setStatusA(e.target.value);
+          
+          }}
+        >
+          <option value={Status.OPEN}>Open</option>
+          <option value={Status.READY}>Ready</option>
+          <option value={Status.IN_PROGRESS}>In Progress</option>
+          <option value={Status.CLOSED}>Closed</option>
+        </Form.Select>
+      </div>
           </Form.Group>
           <Link to={`/view/${ticket.ticketNumber}`}>
             <Button

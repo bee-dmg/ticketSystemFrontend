@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import TicketQueueView from './TicketQueueView';
 import AddTicket from './AddTicket';
 import "../../styles/styles.css";
-import SingleTicket from './SingleTicket';
+import SingleTicketDashboard from './SingleTicketDashboard';
 import AddComment from './commentViews/AddComment';
 import commentApiCall from '../../apiCall/commentApiCall';
 import Status from '../../interfaces/StatusEnum';
@@ -38,7 +38,7 @@ function Dashboard(props: {
 <div className="addTicketDashboard">
 <AddTicket tickets ={tickets} newTicket={newTicket} ticketAdded={ticketAdded} setTicketAdded={setTicketAdded}/></div>
 <div className="singleTicketDashboard">
-<SingleTicket  updateStatus={updateStatus} tickets={tickets} setTickets={setTickets} currentTicket={currentTicket} commentAdded={commentAdded} setCommentAdded={setCommentAdded} /></div>
+<SingleTicketDashboard updateStatus={updateStatus} tickets={tickets} setTickets={setTickets} currentTicket={currentTicket} commentAdded={commentAdded} setCommentAdded={setCommentAdded} /></div>
 
 <div className="addCommentDashboard">
     {currentTicket?<AddComment ticket={currentTicket} setCommentView={()=>{}} newComment={(comment:any)=>{commentApiCall((()=>{}),"/","POST",comment);}} dashboard={true} setCommentAdded={setCommentAdded} commentAdded={commentAdded}/>:<div>Please select a ticket to view comments.</div>}

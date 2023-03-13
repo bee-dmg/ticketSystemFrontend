@@ -9,7 +9,7 @@ import commentApiCall from "../../apiCall/commentApiCall";
 import CommentType from "../../interfaces/CommentInterface";
 import CommentView from "./commentViews/CommentView";
 import Status from "../../interfaces/StatusEnum";
-function SingleTicket(props: {
+function SingleTicketDashboard(props: {
   tickets: Array<TicketType>;
   updateStatus: Function;
   setTickets: Function;
@@ -96,7 +96,11 @@ function SingleTicket(props: {
             >
                  <Link to={`/edit/${ticket.ticketNumber}`}>Edit Ticket</Link>
 
-             <div>Status: {ticket.status}</div>
+              <StatusSelector
+             
+                updateStatus={updateStatus}
+                ticket={ticket}
+              />
             </div>
             <div className="col-3">
               <div className="col-3">Email:{ticket.email}</div>
@@ -114,4 +118,4 @@ function SingleTicket(props: {
   }
 }
 
-export default SingleTicket;
+export default SingleTicketDashboard;
